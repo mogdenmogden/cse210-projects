@@ -4,32 +4,58 @@ class Program
 {
     static void Main(string[] args)
     {
+        string letter;
+        bool passed = false;
+        float remainder;
+        string plusMinus;
+        
         Console.Write("What is your grade percentage? (omit the %) ");
         string usrInputGrade = Console.ReadLine();
-        float gradePct = int.Parse(usrInputGrade);
-        string letterGrade;
-        bool passed = false;
+        float gradePct = float.Parse(usrInputGrade);
+
+        remainder = gradePct % 10;
+        if (remainder >= 7.0)
+            {
+                plusMinus = "+";
+            }
+        else if (remainder <3)
+            {
+                plusMinus = "-";
+            }
+        else 
+            {
+                plusMinus = "";
+            }
         if (gradePct >= 90.0)
             {
-                letterGrade = "A";
-                Console.WriteLine($"Your grade: {letterGrade}");
+                letter = "A";
             }
         else if (gradePct >= 80.0 && gradePct < 90.0)
             {
-                letterGrade = "B"; Console.WriteLine($"Your grade: {letterGrade}");
+                letter = "B"; 
             }
         else if (gradePct >= 70.0 && gradePct < 80.0)
             {
-                letterGrade = "C"; Console.WriteLine($"Your grade: {letterGrade}");
+                letter = "C"; 
             }
         else if (gradePct >= 60.0 && gradePct < 70.0)
             {
-                letterGrade = "D"; Console.WriteLine($"Your grade: {letterGrade}");
+                letter = "D"; 
             }
         else
             {
-                letterGrade = "F"; Console.WriteLine($"Your grade: {letterGrade}");
+                letter = "F"; 
             }
+        
+        if ((letter == "A" && plusMinus == "+") || letter == "F")
+            {
+                Console.WriteLine($"Your grade: {letter}");
+            }
+        else
+            {
+                Console.WriteLine($"Your grade: {letter}{plusMinus}");
+            }
+        
         if (gradePct > 70.0)
             {
                 passed = true;
