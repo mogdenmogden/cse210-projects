@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 class Program
@@ -11,6 +12,7 @@ class Program
         int sumList;
         double avgList;
         int maxList;
+        int nearest;
 
         Console.WriteLine("Enter a list of numbers, type 0 when finished.");
         do
@@ -33,5 +35,14 @@ class Program
         maxList = numbers.Max();
         Console.WriteLine($"The largest is: {maxList}");
 
+        nearest = numbers.Where(x=>x>0).Min();
+
+        Console.WriteLine($"The smallest positive number is: {nearest}");
+        Console.WriteLine("The sorted list is: ");
+        numbers.Sort();
+        foreach (int nbr in numbers)
+        {
+            Console.WriteLine(nbr);
+        }
     }
 }
