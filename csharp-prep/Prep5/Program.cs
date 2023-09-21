@@ -35,11 +35,24 @@ class Program
             Console.WriteLine($"{name}, the square of your number is {number}.");
         }
 
+        /*stretch for fun*/
+        static string MakeUserName(string name, int number)
+        {
+            string userLower = name.ToLower();
+            string uid = userLower.Replace(' ','_');
+            string numid = number.ToString();
+            string userNmId = uid+numid;
+            Console.WriteLine($"Your userid will be: {userNmId}");
+            Console.WriteLine($"Your email address: {userNmId}@theprogram.org");
+            return userNmId;
+        }
+
         DisplayWelcome();
         string usrName = PromptUserName();
         int usrNumber = PromptUserNumber();
         int sqrNumber = SquareNumber(usrNumber);
         DisplayResult(usrName,sqrNumber);
+        MakeUserName(usrName,usrNumber);
 
     }
 }
