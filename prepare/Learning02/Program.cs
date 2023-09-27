@@ -17,11 +17,22 @@ class Program
         job2._startYear = 1825;
         job2._endYear = 1827;
 
+        Resume resume1 = new Resume();
+        resume1._candidateName = "Bilbo Baggins";
+        resume1._jobs.Add(job1);
+        resume1._jobs.Add(job2);
+
         /*Console.WriteLine($"{job1._company}");
-        Console.WriteLine($"{job2._company}");*/
+        Console.WriteLine($"{job2._company}");
         Console.WriteLine("");
         job1.DisplayJobLineDetails();
         job2.DisplayJobLineDetails();
+        Console.WriteLine("");
+        Console.WriteLine($"{resume1._jobs[0]._jobTitle}");
+        Console.WriteLine(resume1._jobs[0]._jobTitle);
+        */
+        Console.WriteLine("");
+        resume1.DisplayJobs();
         Console.WriteLine("");
     }
 }
