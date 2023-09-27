@@ -22,15 +22,6 @@ class Program
         resume1._jobs.Add(job1);
         resume1._jobs.Add(job2);
 
-        /*Console.WriteLine($"{job1._company}");
-        Console.WriteLine($"{job2._company}");
-        Console.WriteLine("");
-        job1.DisplayJobLineDetails();
-        job2.DisplayJobLineDetails();
-        Console.WriteLine("");
-        Console.WriteLine($"{resume1._jobs[0]._jobTitle}");
-        Console.WriteLine(resume1._jobs[0]._jobTitle);
-        */
         Console.WriteLine("");
         resume1.DisplayJobs();
         Console.WriteLine("");
