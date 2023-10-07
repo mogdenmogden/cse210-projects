@@ -49,6 +49,12 @@ public class Journal
             {
                 return true;
             }
+            else if (filename.Length > 4 && filename.Contains(".txt"))
+            {
+                FileStream file = File.Create(filename);
+                file.Close();
+                return true;
+            }
         }
         return false;
     }
@@ -65,11 +71,18 @@ public class Journal
                 {
                     if (_betterName != "")
                     {
-                        Console.WriteLine($"better name is {_betterName}");
+                        /*Console.WriteLine($"better name is {_betterName}");*/
                         /*make a new file, if one doesn't exit with the given name*/
+                        if (File.Exists(_betterName))
+                        {
+                            return _betterName;
+                        }
+                        else
+                        {
                         FileStream file = File.Create(_betterName);
                         file.Close();
                         return _betterName;
+                        }
                     }
                 }
             }  

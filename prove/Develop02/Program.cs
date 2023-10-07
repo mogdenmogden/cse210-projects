@@ -39,9 +39,10 @@ class Program
                 do
                 {
                     journalFile = activeJournal.ReEnterFileName();
-                    Console.WriteLine(journalFile);
+                    /*Console.WriteLine(journalFile);*/
                     checkIt = activeJournal.CheckBadFile(journalFile);
-                    Console.WriteLine($"checkIt is now {checkIt}");
+                    activeJournal.LoadFile(journalFile);
+                    /*Console.WriteLine($"checkIt is now {checkIt}");*/
                 } while (checkIt is false);
             }
         } while (checkIt is false);
@@ -87,10 +88,29 @@ class Program
             {
                 Console.Write("What is the name of your journal file? (Ex: MyJournal.txt) > ");
                 journalFile = Console.ReadLine();
-                if (activeJournal.CheckBadFile(journalFile) is true)
+                /*if (activeJournal.CheckBadFile(journalFile) is true)
                 {
                     activeJournal.LoadFile(journalFile);
-                }
+                }*/
+                checkIt = false;
+                do 
+                {
+                    if (activeJournal.CheckBadFile(journalFile) is true)
+                    {
+                        activeJournal.LoadFile(journalFile); /*load the file if it already exists*/
+                        checkIt = true;
+                    }
+                    else /*re-prompt for a good filename ending in .txt*/
+                    {
+                        do
+                        {
+                            journalFile = activeJournal.ReEnterFileName();
+                            /*Console.WriteLine(journalFile);*/
+                            checkIt = activeJournal.CheckBadFile(journalFile);
+                            /*Console.WriteLine($"checkIt is now {checkIt}");*/
+                        } while (checkIt is false);
+                    }
+                } while (checkIt is false);
                 Console.WriteLine();
             }
             else if (pickOne == "4")
