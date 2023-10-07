@@ -4,22 +4,12 @@ using System.IO;
 public class Journal
 {
     public List<string> _theJournal = new List<string>();
-    public string _inputFileName;
     public string _betterName;
 
     public List<string> AddEntryToJournal(string jEntry)
     {
         _theJournal.Add(jEntry);
         return _theJournal;
-    }
-    public void ShowAllEntries(List<string> entries)
-    {
-        foreach (string thing in entries)
-        {
-            Console.WriteLine(thing);
-            Console.WriteLine("");
-        }
-        Console.WriteLine("");
     }
     public void SaveFile(string filename)
     {
