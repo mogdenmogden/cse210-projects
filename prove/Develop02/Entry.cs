@@ -14,12 +14,9 @@ public class Entry
         string _theEntry = Console.ReadLine();
         return _theEntry;
     }
-    public string DisplayThisEntry(string entry, string prompter)
+    public string prepOneEntry(string entry, string prompter)
     {
-        /*Console.WriteLine($"{DateTime.Now.ToShortDateString()} - Prompt: {prompter}\n{entry}");*/
         _fullEntry = DateTime.Now.ToShortDateString()+" - Prompt: "+prompter+" |"+entry;
-        Console.WriteLine($"{DateTime.Now.ToShortDateString()} - Prompt: {prompter}");
-        Console.WriteLine(entry);
         return _fullEntry;
     }
 
