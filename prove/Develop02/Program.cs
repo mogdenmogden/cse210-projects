@@ -119,11 +119,31 @@ class Program
                 {
                     Console.Write($"Would you like to save in {journalFile}? (Y/N) "); /*option to save entries in a new file*/
                     string newOne = Console.ReadLine().ToUpper();
-                    Console.WriteLine(newOne);
+                    /*Console.WriteLine(newOne);*/
                     if (newOne == "N")
                     {
                         Console.Write("Enter a new file name (Example: MyJournal.txt) ");
                         journalFile = Console.ReadLine();
+                        checkIt = false;
+                        do 
+                        {
+                            if (activeJournal.CheckBadFile(journalFile) is true)
+                            {
+                                activeJournal.LoadFile(journalFile); /*load the file if it already exists*/
+                                checkIt = true;
+                            }
+                            else /*re-prompt for a good filename ending in .txt*/
+                            {
+                                do
+                                {
+                                    journalFile = activeJournal.ReEnterFileName();
+                                    /*Console.WriteLine(journalFile);*/
+                                    checkIt = activeJournal.CheckBadFile(journalFile);
+                                    activeJournal.LoadFile(journalFile);
+                                    /*Console.WriteLine($"checkIt is now {checkIt}");*/
+                                } while (checkIt is false);
+                            }
+                        } while (checkIt is false);
                     }
                 }
                 else
