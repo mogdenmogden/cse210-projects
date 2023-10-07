@@ -12,7 +12,6 @@ class Program
         WritingPrompts aPrompt = new WritingPrompts();
         Entry todayEntry = new Entry();
         Journal activeJournal = new Journal();
-        /*List<string> journalInMemory = new List<string>();*/
         string pickOne; 
         string todayPrompt = "";
         string enteredText;
@@ -67,7 +66,6 @@ class Program
                 enteredText = todayEntry.GetJournalEntry(); /*put some stuff in a new Entry named todayEntry*/
                 Console.WriteLine("");
                 entryOut = todayEntry.prepOneEntry(enteredText, todayPrompt);/*puts the todayPrompt and enteredText together */
-                /*journalInMemory = activeJournal.AddEntryToJournal(entryOut);Adds the whole entryOut to the Journal*/
                 activeJournal.AddEntryToJournal(entryOut);
                 
             }
@@ -91,7 +89,6 @@ class Program
                 journalFile = Console.ReadLine();
                 if (activeJournal.CheckBadFile(journalFile) is true)
                 {
-                    /*journalInMemory = activeJournal.LoadFile(journalFile);*/
                     activeJournal.LoadFile(journalFile);
                 }
                 Console.WriteLine();
