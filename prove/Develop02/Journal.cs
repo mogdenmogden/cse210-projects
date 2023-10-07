@@ -1,4 +1,5 @@
 using System.Text;
+using System.IO;
 
 public class Journal
 {
@@ -8,6 +9,7 @@ public class Journal
     
     public void AddEntryToJournal(string jEntry)
     {
+        /*jEntry = jEntry+"|";*/
         _theJournal.Add(jEntry);
 
     }
@@ -38,12 +40,12 @@ public class Journal
     public List<string> LoadFile(string filename)
     {
         /*load the file into a list, entry by entry*/
-        string[] lines = File.ReadAllLines(filename);
+       string[] lines = File.ReadAllLines(filename);
         foreach (string line in lines)
         {
             _theJournal.Add(line);
         }
-        return _theJournal;     
+        return _theJournal;        
     }
 
 }

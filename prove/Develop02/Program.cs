@@ -27,6 +27,7 @@ class Program
         {
             /*make a new file if one doesn't exit with the given name*/
             FileStream file = File.Create(journalFile);
+            file.Close();
         }
 
         do 
@@ -57,6 +58,8 @@ class Program
             else if (pickOne == "2")
             {
                 Console.WriteLine($"{pickOne}");
+                Console.WriteLine(activeJournal);
+                Console.WriteLine();
             }
             else if (pickOne == "3")
             {

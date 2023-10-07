@@ -17,7 +17,7 @@ public class Entry
     public string DisplayThisEntry(string entry, string prompter)
     {
         /*Console.WriteLine($"{DateTime.Now.ToShortDateString()} - Prompt: {prompter}\n{entry}");*/
-        _fullEntry = DateTime.Now.ToShortDateString()+" - Prompt: "+prompter+"\n"+entry;
+        _fullEntry = DateTime.Now.ToShortDateString()+" - Prompt: "+prompter+entry;
         return _fullEntry;
     }
 
