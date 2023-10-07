@@ -9,42 +9,51 @@ public class Journal
     
     public void AddEntryToJournal(string jEntry)
     {
-        /*jEntry = jEntry+"|";*/
         _theJournal.Add(jEntry);
-
     }
     
-    public void ShowAllEntries()
+    public void ShowAllEntries(List<string> entries)
     {
         /*pick the selected entry from the list 
         and display it*/
+        foreach (string thing in entries)
+        {
+            Console.WriteLine(thing);
+            Console.WriteLine("");
+        }
         Console.WriteLine("");
     }
 
     public void SaveFile(string filename)
     {
+    
         /*save the file here*/
-        using (StreamWriter outputFile = new StreamWriter(filename))
+        if (filename != "")
         {
-            StringBuilder concatJournal = new StringBuilder();
-            foreach (string entry in _theJournal)
+            using (StreamWriter outputFile = new StreamWriter(filename))
             {
-                concatJournal.Append(entry);
-                concatJournal.Append("|");
-            }
-            outputFile.WriteLine(concatJournal);
-        } 
+                StringBuilder concatJournal = new StringBuilder();
+                foreach (string entry in _theJournal)
+                {
+                    /*concatJournal.Append(entry);*/
+                    outputFile.WriteLine(entry);
+                    
+                }
+                outputFile.WriteLine(concatJournal);
+            } 
+        }
 
     }
 
     public List<string> LoadFile(string filename)
     {
         /*load the file into a list, entry by entry*/
-       string[] lines = File.ReadAllLines(filename);
+       string[] lines = System.IO.File.ReadAllLines(filename);
         foreach (string line in lines)
         {
             _theJournal.Add(line);
         }
+        Console.WriteLine(_theJournal);
         return _theJournal;        
     }
 

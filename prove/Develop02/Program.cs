@@ -13,22 +13,10 @@ class Program
         string todayPrompt = "";
         string enteredText;
         Journal activeJournal = new Journal();
-        string journalFile;
+        string journalFile = "";
 
         Console.WriteLine("");
         Console.WriteLine("Welcome to the Journal Program!");
-        Console.Write("What is the name of your personal journal file? (Example: MyJournal.txt) ");
-        journalFile = Console.ReadLine();
-        if (File.Exists(journalFile))
-        {
-            activeJournal.LoadFile(journalFile);
-        }
-        else 
-        {
-            /*make a new file if one doesn't exit with the given name*/
-            FileStream file = File.Create(journalFile);
-            file.Close();
-        }
 
         do 
         { 
@@ -51,24 +39,35 @@ class Program
                 enteredText = todayEntry.GetJournalEntry();
                 Console.WriteLine("");
                 entryOut = todayEntry.DisplayThisEntry(enteredText, todayPrompt);
-                Console.WriteLine(entryOut);
                 activeJournal.AddEntryToJournal(entryOut);
                 Console.WriteLine("");
             }
             else if (pickOne == "2")
             {
                 Console.WriteLine($"{pickOne}");
-                Console.WriteLine(activeJournal);
-                Console.WriteLine();
+                
             }
             else if (pickOne == "3")
             {
                 Console.WriteLine($"{pickOne}");
-                activeJournal.LoadFile(journalFile);
+                if (journalFile != "")
+                {
+                    activeJournal.LoadFile(journalFile);
+                }
             }
             else if (pickOne == "4")
             {
                 Console.WriteLine($"{pickOne}");
+                journalFile = " ";
+                while (journalFile == " " || journalFile != null) 
+                {
+                    Console.Write("What file name will you use for your journal file? (Example: MyJournal.txt) ");
+                    journalFile = Console.ReadLine();   
+                    if (journalFile == " " || journalFile != null)
+                    {
+                        Console.WriteLine("Please try again.");
+                    }
+                }
                 activeJournal.SaveFile(journalFile);
             }
             else
