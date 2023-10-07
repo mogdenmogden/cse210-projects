@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
@@ -9,10 +10,11 @@ class Program
         /*THIS IS THE JOURNAL PROGRAM*/
         WritingPrompts aPrompt = new WritingPrompts();
         Entry todayEntry = new Entry();
+        Journal activeJournal = new Journal();
+        List<string> journalInMemory = new List<string>();
         string pickOne; 
         string todayPrompt = "";
         string enteredText;
-        Journal activeJournal = new Journal();
         string journalFile = "";
 
         Console.WriteLine("");
@@ -33,62 +35,69 @@ class Program
             //AFTER TESTING EACH CLASS IN THE MENU
             if (pickOne == "1")
             {
-                Console.WriteLine($"{pickOne}");
                 string entryOut;
-                todayPrompt = aPrompt.PickAPrompt();
-                enteredText = todayEntry.GetJournalEntry();
+                todayPrompt = aPrompt.PickAPrompt(); /*get a prompt*/
+                enteredText = todayEntry.GetJournalEntry(); /*put some stuff in a new Entry named todayEntry*/
                 Console.WriteLine("");
-                entryOut = todayEntry.DisplayThisEntry(enteredText, todayPrompt);
-                activeJournal.AddEntryToJournal(entryOut);
+                entryOut = todayEntry.DisplayThisEntry(enteredText, todayPrompt);/*puts the todayPrompt and enteredText together AND PRINTS IT*/
+                journalInMemory = activeJournal.AddEntryToJournal(entryOut);/*Adds the whole entryOut to the Journal*/
                 Console.WriteLine("");
             }
             else if (pickOne == "2")
             {
-                Console.WriteLine($"{pickOne}");
+                foreach (string j in journalInMemory)
+                {
+                    if (j != "") /*prevents error when blank lines are found in the txt file*/
+                    {
+                        string[] part = j.Split("|");
+                        Console.WriteLine(part[0]);
+                        Console.WriteLine(part[1]);
+                        Console.WriteLine();
+                    }
+                }
                 
             }
             else if (pickOne == "3")
             {
-                Console.WriteLine($"{pickOne}");
+                Console.Write("What is the name of your journal file? (Ex: MyJournal.txt) > ");
+                journalFile = Console.ReadLine();
                 if (journalFile != "")
                 {
-                    activeJournal.LoadFile(journalFile);
+                    journalInMemory = activeJournal.LoadFile(journalFile);
                 }
             }
             else if (pickOne == "4")
             {
-                Console.WriteLine($"{pickOne}");
-                journalFile = " ";
-                while (journalFile == " " || journalFile != null) 
+                if (journalFile != " ")
                 {
-                    Console.Write("What file name will you use for your journal file? (Example: MyJournal.txt) ");
-                    journalFile = Console.ReadLine();   
-                    if (journalFile == " " || journalFile != null)
+                    Console.Write($"Would you like to save in {journalFile}? (Y/N) "); /*option to save entries in a new file*/
+                    string newFile = Console.ReadLine();
+                    if (newFile.ToUpper() == "Y")
                     {
-                        Console.WriteLine("Please try again.");
+                        Console.Write("Enter a new file name (Example: MyJournal.txt) ");
+                        journalFile = Console.ReadLine();
+                    }
+                }
+                else
+                {
+                    while (journalFile == " ") 
+                    {
+                        Console.Write("What file name will you use for your journal file? (Example: MyJournal.txt) ");
+                        journalFile = Console.ReadLine();   
+                        if (journalFile == " ")
+                        {
+                            Console.WriteLine("Please try again.");
+                        }
                     }
                 }
                 activeJournal.SaveFile(journalFile);
+                Console.WriteLine();
             }
             else
             {
-                Console.WriteLine($"{pickOne}");
                 activeJournal.SaveFile(journalFile);
+                Console.WriteLine();
             }
-
-            /*Console.WriteLine("testing WriteEntry");
-            string todayPrompt = aPrompt.PickAPrompt();
-            string enteredText = todayEntry.GetJournalEntry();*/
-
-
-
-
-
-            /*Console.WriteLine();
-            Console.WriteLine("testing DisplayThisEntry");
-            todayEntry.DisplayThisEntry(enteredText, todayPrompt);
-            Console.WriteLine();*/
-
         } while (pickOne != "0");
         Console.WriteLine("");
     }

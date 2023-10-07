@@ -7,15 +7,14 @@ public class Journal
     public string _inputFileName;
 
     
-    public void AddEntryToJournal(string jEntry)
+    public List<string> AddEntryToJournal(string jEntry)
     {
         _theJournal.Add(jEntry);
+        return _theJournal;
     }
     
     public void ShowAllEntries(List<string> entries)
     {
-        /*pick the selected entry from the list 
-        and display it*/
         foreach (string thing in entries)
         {
             Console.WriteLine(thing);
@@ -26,8 +25,6 @@ public class Journal
 
     public void SaveFile(string filename)
     {
-    
-        /*save the file here*/
         if (filename != "")
         {
             using (StreamWriter outputFile = new StreamWriter(filename))
@@ -35,11 +32,10 @@ public class Journal
                 StringBuilder concatJournal = new StringBuilder();
                 foreach (string entry in _theJournal)
                 {
-                    /*concatJournal.Append(entry);*/
                     outputFile.WriteLine(entry);
                     
                 }
-                outputFile.WriteLine(concatJournal);
+                outputFile.Write(concatJournal);
             } 
         }
 
@@ -51,9 +47,11 @@ public class Journal
        string[] lines = System.IO.File.ReadAllLines(filename);
         foreach (string line in lines)
         {
-            _theJournal.Add(line);
+            if (line != "") /*removes inadvertent blank lines*/
+            {
+                _theJournal.Add(line);
+            }
         }
-        Console.WriteLine(_theJournal);
         return _theJournal;        
     }
 
