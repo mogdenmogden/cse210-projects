@@ -1,6 +1,6 @@
 public class Reference {
     
-    private string _ref,_verse, _bk, _ch, _vs1, _vsN;
+    private string _ref, _bk, _ch, _vs1, _vsN;
  
     public Reference(string bk, string ch, string begvs, string endvs)
     {

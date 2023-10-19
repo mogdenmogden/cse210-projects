@@ -54,16 +54,24 @@ class Program
         
         Scripture hideMe = new Scripture(workingVerse);
         
-        hideMe.SetBoolList(hideMe.GetScripture());
+        List<string> holder = new List<string>();
+        holder = hideMe.GetScripture();
+        Console.WriteLine();
+        Console.WriteLine(holder);
+
+            //hideMe.SetScripture(workingVerse); //sends the workingVerse in
+        // hideMe.SetBoolList(hideMe.GetScripture()); //makes the bool list for switching words to hidden
         
-        hideBool = hideMe.GetBoolList();
+        // hideBool = hideMe.GetBoolList(); 
         
-        hiddenWords = hideMe.RenewHiddenList();
+        // hiddenWords = hideMe.RenewHiddenList();
         
-        printMe = hideMe.GetScripture().ToString();
+            //hideMe.PrintCheckr(workingVerse);
+        // printMe = hideMe.GetScripture().ToString();
         
-        Console.WriteLine(hideBool);
-        Console.WriteLine(hiddenWords);
-        Console.WriteLine(printMe);
+            // Console.WriteLine(workingVerse);
+            // Console.WriteLine(hideBool);
+            // Console.WriteLine(hiddenWords);
+            // Console.WriteLine(printMe);
     }
 }
