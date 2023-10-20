@@ -20,10 +20,7 @@ public class Word
         return _wordMojo;
     }
 
-    private void Show()
-    {
-
-    }
+    
 
 
 }

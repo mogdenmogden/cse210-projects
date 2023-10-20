@@ -20,7 +20,7 @@ class Program
         List<string> hiddenWords;
         
         
-        // Console.WriteLine(fullRef);
+        Console.Clear();
         
         partList = fullRef.Split("|").ToList();
 
@@ -54,9 +54,9 @@ class Program
         
         Scripture hideMe = new Scripture(onlyRef,workingVerse);
         
-        List<string> holder = new List<string>();
+        hideMe.DisplayScripture();
         
-        
+        // List<string> holder = new List<string>();
         // holder = hideMe.GetScripture();
         // Console.WriteLine();
         // Console.WriteLine(holder);
