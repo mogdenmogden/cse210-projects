@@ -52,12 +52,19 @@ class Program
 
         Console.WriteLine(onlyRef+" "+workingVerse);
         
-        Scripture hideMe = new Scripture(workingVerse);
+        Scripture hideMe = new Scripture(onlyRef,workingVerse);
         
         List<string> holder = new List<string>();
-        holder = hideMe.GetScripture();
-        Console.WriteLine();
-        Console.WriteLine(holder);
+        
+        
+        // holder = hideMe.GetScripture();
+        // Console.WriteLine();
+        // Console.WriteLine(holder);
+        // Console.WriteLine();
+        // Console.WriteLine(hideMe.GetScripture());
+        // Console.WriteLine();
+        // hideMe.PrintCheckr(workingVerse); //this works
+        
 
             //hideMe.SetScripture(workingVerse); //sends the workingVerse in
         // hideMe.SetBoolList(hideMe.GetScripture()); //makes the bool list for switching words to hidden

@@ -1,27 +1,36 @@
 public class Scripture
 {
-    private List<string> _words = new List<string>();
+    private List<Word> _words = new List<Word>();
     // private List<bool> _hidden;
-    
+    private string[] _phraseWords;
+    private string _verseRef;
     private List<bool> _hidden = new List<bool>();
+    private Word _theMagic;
     
-    public Scripture(string wordsString)  //constructor
-    {
-        _words = wordsString.Split(" ").ToList();
-        // foreach (string word in _words)
-        // {
-        //     Console.WriteLine(word);
-        // }
 
+    public Scripture(string verseString,string wordsString)  //constructor
+    {
+        _verseRef = verseString;
+        _phraseWords = wordsString.Split(" ");
+        foreach (string singleWord in _phraseWords)
+        {
+            //Console.WriteLine(word);
+            Word wordArray = new Word(singleWord);
+            _theMagic = wordArray.MojoMaker();
+            //put theMagic into a list
+            Console.WriteLine(_theMagic);
+            _words.Add(_theMagic)
+        }
+        
     }
     
-    public List<string> GetScripture()
+    public void DisplayScripture()
     {
-        // foreach (string word in _words)
-        // {
-        //     Console.WriteLine(word);
-        // }
-        return _words;
+        // print the word, hidden or not
+        foreach (thingie in _words)
+        {
+            if (thingie[1] = false)
+        }
     }
 
     public void SetBoolList(List<string> verse)
