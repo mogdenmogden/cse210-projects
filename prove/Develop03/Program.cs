@@ -4,6 +4,7 @@ class Program
 {
     static void Main(string[] args)
     {
+        Console.Clear();
         Console.WriteLine("Hello Develop03 World!");
 
         List<string> vsLibrary = new List<string>() {
@@ -16,11 +17,10 @@ class Program
         Random random = new Random();
         int randPickVs = random.Next(1,1+vsLibrary.Count)-1;
         string fullRef = vsLibrary[randPickVs];
-        List<bool> hideBool;
-        List<string> hiddenWords;
+        // List<bool> hideBool;
+        // List<string> hiddenWords;
         
         
-        Console.Clear();
         
         partList = fullRef.Split("|").ToList();
 
