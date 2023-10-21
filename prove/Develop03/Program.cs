@@ -53,6 +53,7 @@ class Program
         Console.WriteLine(onlyRef+" "+workingVerse);
         
         Scripture hideMe = new Scripture(onlyRef,workingVerse);
+        // hideMe.SeparateWords();
         
         hideMe.DisplayScripture();
         

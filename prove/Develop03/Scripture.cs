@@ -1,41 +1,69 @@
 public class Scripture
 {
     private List<Word> _allWords;
-    // private List<bool> _hidden;
-    private string[] _phraseWords;
     private string _verseRef;
-    // private List<bool> _hidden = new List<bool>();
+    private string _phraseWords;
     private Word _theMagic;
+    private string _oneWord;
     
-
     public Scripture(string verseString,string wordsString)  //constructor
     {
         _verseRef = verseString;
+        _phraseWords = wordsString;
         _allWords = new List<Word>();  //instantiate the variable that will hold each single word array
-        string[] _phraseWords = wordsString.Split(" ");
-        foreach (string oneWord in _phraseWords)
+        
+        string[] stringSeparated = _phraseWords.Split(' ');
+        foreach (string item in stringSeparated)
         {
-            //Console.WriteLine(word);
-            Word wordItem = new Word(oneWord);
-            
-            _theMagic = wordItem.MojoMaker();
-            //put theMagic into a list
-            // Console.WriteLine(_theMagic);
-            _allWords.Add(_theMagic);
+            _oneWord = item;
+            Word intoWord = new Word(item);
+            Word wordThing = intoWord.MojoMaker();
+            _allWords.Add(wordThing);
         }
-        Console.WriteLine("end of scripture()");
-        Console.WriteLine(_allWords.Count);
+
     }
-    
+
+    public string GetRenderedText()
+    {
+        return _oneWord;
+    }
+
+    // public void SeparateWords()
+    // {
+    //     string[] holder = _phraseWords.Split(' ');
+    //     foreach (string item in holder)
+    //     {
+    //         Word wordItem = new Word(item);
+    //         _theMagic = wordItem.MojoMaker();
+    //         _allWords.Add(_theMagic);
+    //     }
+    //     Console.WriteLine("separated");
+    //     Console.WriteLine(_allWords.Count);
+        
+    // }
+
     public void DisplayScripture()
     {
        Console.Write(_verseRef+" ");
        // print the word, hidden or not
-       foreach (Word thingie in _allWords)
+       
+       foreach (Word item in _allWords)
        {
-        Console.Write(thingie+" ");
+        
+        Console.Write(item+"* ");
        }
+
+
     }
+    
+    public void HideWords(Word list)
+    {
+        foreach (Word item in _allWords)
+        {
+            break;
+        }
+    }
+    
 
 //     public void SetBoolList(List<string> verse)
 //     {
