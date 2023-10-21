@@ -4,11 +4,15 @@ public class Scripture
     private string _verseRef;
     private string _phraseWords;
     private string _phraseOut;
+    //private Word _theMagic;
+    //private string _oneWord;
     private int _phraseLength;
     List<int> _itemsNowHidden = new List<int>();  //this will hold a list of hidden things
     private static int _startHere = 0;
     private int _placeInLine = 0;
-
+    //private bool _pickedAlready = true;
+    // private string[] _stringSeparated ;
+    // private int _hidePicker;
     private int _rand1;
     private int _rand2;
     private int _rand3;
@@ -30,11 +34,14 @@ public class Scripture
         // Console.WriteLine(_rand1+" "+_rand2+" "+_rand3);
         
         _startHere++;
-        
+        //int _placeInLine = 0;  //this is the sequence number of the word in the phrase
         //put ints into the list. When the _itemsNowHidden length == _phraseLength then all words are hidden
         foreach (string item in _stringSeparated)
         {
             this._placeInLine = _startHere;
+            //_placeInLine = _placeInLine++; //increase by one for the next word in the phrase
+            //string _masked;
+            //_oneWord = item;  //this string can be processed by the Hide tool/method SetHidden and then fed to the process below
             
             //choose a word that hasn't been chosen before
             
@@ -76,6 +83,8 @@ public class Scripture
     
     private bool ShouldIHideThisWord(int checkit)  //choose a word that hasn't been chosen before
     {
+        // Random random = new Random();
+        // int _hidePicker = random.Next(0,_phraseLength+1);
         if (_itemsNowHidden.Contains(checkit) == true)  //check if this item# has already been masked
         {
             _hideIt = false;
