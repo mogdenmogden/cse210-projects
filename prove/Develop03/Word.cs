@@ -8,7 +8,7 @@ public class Word
     {
         _wordOut = wordIn;
         _displayedBool = true;
-        Word _wordMojo = new Word(_wordOut,_displayedBool);
+        // Word _wordMojo = new Word(_wordOut,_displayedBool);
     }
     public Word(string wordIn, bool boolIn)
     {
@@ -19,7 +19,7 @@ public class Word
 
     public Word MojoMaker()
     {
-        // Word _wordMojo = new Word(_wordOut,_displayedBool);
+        Word _wordMojo = new Word(_wordOut,_displayedBool);
         return _wordMojo;
     }
 

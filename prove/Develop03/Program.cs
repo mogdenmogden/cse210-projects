@@ -56,6 +56,7 @@ class Program
         // hideMe.SeparateWords();
         
         hideMe.DisplayScripture();
+        // Console.WriteLine(hideMe.DisplayScripture());
         
         // List<string> holder = new List<string>();
         // holder = hideMe.GetScripture();

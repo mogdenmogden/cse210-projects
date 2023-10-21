@@ -49,8 +49,11 @@ public class Scripture
        
        foreach (Word item in _allWords)
        {
+        // Word wordy = new Word(item);
+        Console.Write(item.GetWord()+" ");
         
-        Console.Write(item+"* ");
+        //Console.Write(item+"* ");
+
        }
 
 
