@@ -28,18 +28,23 @@ public class Word
         return _wordOut;
     }
 
-    public Word SetHidden(string toBeHidden)
+    public void SetHidden(string toBeHidden)
     {
         // foreach (char letter in toBeHidden)//I could loop through the letters and mask each one
         // {
 
         // }
-        int _wLength = toBeHidden.Count();//or I could get the length of the word and just repeat a mask char that many times to make a new _wordOut
+        int _wLength = toBeHidden.Length;//or I could get the length of the word and just repeat a mask char that many times to make a new _wordOut
         _wordOut = new string('-',_wLength);//do I want to push the mask to _wordOut or to return the mask to Scripture?
         
-        Word _hideThis = new Word(_wordOut);//pushes the masked word through the constructor
+        //Word _hideThis = new Word(_wordOut);//DONT DO THIS HERE pushes the masked word through the constructor
 
-        return _hideThis;
+        
+    }
+
+    public string GetHidden()
+    {
+        return _wordOut;
     }
 
 }

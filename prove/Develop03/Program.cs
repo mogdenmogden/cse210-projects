@@ -17,8 +17,7 @@ class Program
         Random random = new Random();
         int randPickVs = random.Next(1,1+vsLibrary.Count)-1;
         string fullRef = vsLibrary[randPickVs];
-        // List<bool> hideBool;
-        // List<string> hiddenWords;
+        string userChoice;
         
         
         
@@ -51,36 +50,17 @@ class Program
         }
 
         Console.WriteLine(onlyRef+" "+workingVerse);
-        
-        Scripture hideMe = new Scripture(onlyRef,workingVerse);
-        // hideMe.SeparateWords();
-        
-        hideMe.DisplayScripture();
-        // Console.WriteLine(hideMe.DisplayScripture());
-        
-        // List<string> holder = new List<string>();
-        // holder = hideMe.GetScripture();
-        // Console.WriteLine();
-        // Console.WriteLine(holder);
-        // Console.WriteLine();
-        // Console.WriteLine(hideMe.GetScripture());
-        // Console.WriteLine();
-        // hideMe.PrintCheckr(workingVerse); //this works
-        
+        Console.Write("Press the Enter key or type 'quit' to end: ");
+        userChoice = Console.ReadLine();
+        if (userChoice !="quit")
+        {
+            Scripture newDisplay = new Scripture(onlyRef,workingVerse);  //reprint the whole thing
+            newDisplay.DisplayScripture();
+        }
+            
+       
 
-            //hideMe.SetScripture(workingVerse); //sends the workingVerse in
-        // hideMe.SetBoolList(hideMe.GetScripture()); //makes the bool list for switching words to hidden
-        
-        // hideBool = hideMe.GetBoolList(); 
-        
-        // hiddenWords = hideMe.RenewHiddenList();
-        
-            //hideMe.PrintCheckr(workingVerse);
-        // printMe = hideMe.GetScripture().ToString();
-        
-            // Console.WriteLine(workingVerse);
-            // Console.WriteLine(hideBool);
-            // Console.WriteLine(hiddenWords);
-            // Console.WriteLine(printMe);
+        // Console.WriteLine(newDisplay.DisplayScripture());
+
     }
 }

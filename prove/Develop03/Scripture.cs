@@ -3,13 +3,16 @@ public class Scripture
     private List<Word> _allWords;
     private string _verseRef;
     private string _phraseWords;
-    private Word _theMagic;
-    private string _oneWord;
+    //private Word _theMagic;
+    //private string _oneWord;
+    private int _phraseLength;
     List<int> _itemsNowHidden = new List<int>();  //this will hold a list of hidden things
     private int _placeInLine;
-    private bool _pickedAlready = true;
-    private string[] _stringSeparated ;
-    private int _hidePicker;
+    //private bool _pickedAlready = true;
+    // private string[] _stringSeparated ;
+    // private int _hidePicker;
+    private bool _hideIt;
+    private int _hideThisMany = 3;
     
     public Scripture(string verseString,string wordsString)  //constructor
     {
@@ -19,42 +22,45 @@ public class Scripture
         
         string[] _stringSeparated = _phraseWords.Split(' ');  //split it up into pieces
 
-        int _phraseLength = _stringSeparated.Count(); //the _stringSeparated has this many words
+        _phraseLength = _stringSeparated.Count(); //the _stringSeparated has this many words
 
         
-
-          //put ints into the list. When the list length == _phraseLength then all words are hidden
+        //put ints into the list. When the _itemsNowHidden length == _phraseLength then all words are hidden
         _placeInLine = 0;  //this is the sequence number of the word in the phrase
         
         foreach (string item in _stringSeparated)
         {
+            //string _masked;
+            //_oneWord = item;  //this string can be processed by the Hide tool/method SetHidden and then fed to the process below
             
-            _oneWord = item;  //this string can be processed by the Hide tool/method SetHidden and then fed to the process below
-            //come up with a way to hide certain words with SetHidden
+            //choose a word that hasn't been chosen before
             
-            do  //choose a word that hasn't been chosen before
+            if (ShouldIHideThisWord(_placeInLine) == true)  //true means hide this word, it's not already hidden
             {
-                Random random = new Random();
-                int _hidePicker = random.Next(0,_phraseLength+1);
-                if (_itemsNowHidden.Contains(_hidePicker) == true)  //check if this item# has already been masked
-                {
-                    _pickedAlready = true;
-                }
-                else
-                {
-                    _pickedAlready = false;
-                    _itemsNowHidden.Add(_hidePicker); //if the word gets hidden, insert this in list
+                Word intoWord = new Word(item);  //make a new instance of a Word object
+                intoWord.SetHidden(item);
+                //_masked = intoWord.GetHidden();
+                Word wordThing = intoWord.MojoMaker();  //make the Word object with str and bool that are already in Word class
+                _allWords.Add(wordThing);  //add it to the list of Word objects
+            }
+            else
+            {
+                Word intoWord = new Word(item);  //make a new instance of a Word object
+                Word wordThing = intoWord.MojoMaker();  //make the Word object with str and bool that are already in Word class
+                _allWords.Add(wordThing);  //add it to the list of Word objects
+            }
 
-                }
-            } while (_pickedAlready == true);
-            
-
-            Word intoWord = new Word(item);  //make a new instance of a Word object
-            Word wordThing = intoWord.MojoMaker();  //make the Word object with str and bool
-            _allWords.Add(wordThing);  //add it to the list of Word objects
             
             _placeInLine = _placeInLine++; //increase by one for the next word in the phrase
         }
+        // do
+        // {
+
+        // } while (_itemsNowHidden.Count != _phraseLength);
+        // do 
+        // {
+        //     _hideThisMany--;
+        // } while (_hideThisMany >0);
 
     }
 
@@ -69,30 +75,22 @@ public class Scripture
         }
     }
     
-    // private void HideAWord(string wordie)
-    // {
-    //     foreach (string item in _stringSeparated)
-    //     {
+    private bool ShouldIHideThisWord(int checkit)  //choose a word that hasn't been chosen before
+    {
+        // Random random = new Random();
+        // int _hidePicker = random.Next(0,_phraseLength+1);
+        if (_itemsNowHidden.Contains(checkit) == true)  //check if this item# has already been masked
+        {
+            _hideIt = false;
+        }
+        else
+        {
+            _itemsNowHidden.Add(checkit); //if the word gets hidden, insert this in list
+            _hideIt = true;
             
-    //         _oneWord = item;  //this string can be processed by the Hide tool/method SetHidden and then fed to the process below
-    //         //come up with a way to hide certain words with SetHidden
-            
-    //         do  //choose a word that hasn't been chosen before
-    //         {
-    //             Random random = new Random();
-    //             int _hidePicker = random.Next(0,_phraseLength+1);
-    //             if (_pickedAlready = _itemsNowHidden.Contains(_hidePicker) == true)  //check if this item# has already been masked
-    //             {
-    //                 _pickedAlready = true;
-    //             }
-    //             else
-    //             {
-    //                 _pickedAlready = false;
-    //                 _placeInLine = _hidePicker;
-    //                 // _itemsNowHidden.Add(_placeInLine);
-    //             }
-    //         } while (_pickedAlready == true);
-    // }
+        }
+        return _hideIt;  //returns false if the word should be picked for masking
+    }
     
 
 //     public void SetBoolList(List<string> verse)
