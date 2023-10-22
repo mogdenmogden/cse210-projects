@@ -50,17 +50,32 @@ class Program
         }
 
         Console.WriteLine(onlyRef+" "+workingVerse);
+        Scripture newDisplay = new Scripture(onlyRef,workingVerse);  //reprint the whole thing
         Console.Write("Press the Enter key or type 'quit' to end: ");
         userChoice = Console.ReadLine();
+        
+        do
+        {
         if (userChoice !="quit")
         {
             Console.Clear();
-            Scripture newDisplay = new Scripture(onlyRef,workingVerse);  //reprint the whole thing
-            newDisplay.DisplayScripture();
+            Scripture newerDisplay = new Scripture(onlyRef,workingVerse);
+            newerDisplay.GetRenderedText();
+            Console.Write("Press the Enter key or type 'quit' to end: ");
+            userChoice = Console.ReadLine();    
         }
+        } while (userChoice != "quit");
+
+
+        // if (userChoice !="quit")
+        // {
+        //     Console.Clear();
+        //     Scripture newDisplay = new Scripture(onlyRef,workingVerse);  //reprint the whole thing
+        //     newDisplay.DisplayScripture();
+        // }
             
        
-
+        // Scripture newDisplay = new Scripture(onlyRef,workingVerse);
         // Console.WriteLine(newDisplay.DisplayScripture());
 
     }
