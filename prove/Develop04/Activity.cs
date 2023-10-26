@@ -1,3 +1,5 @@
+using System.Xml;
+
 public class Activity
 {
     private string _chosenActivity;
@@ -7,31 +9,13 @@ public class Activity
     private string _startMsg;
     private string _getReady;
     private int _totTime;
+    private int timedown;
 
     public Activity(string choiceA)
     {
         _chosenActivity = choiceA;
+        //_chosenDuration = choiceD;
         
-        
-    }
-
-    public int PrintStartGetTime(string entry)
-    {
-        Console.WriteLine($"Welcome to the {_actName} Activity\t");
-        Console.WriteLine(_actDescr);
-        Console.WriteLine();
-        SetTime();//do I want this in Main?
-        return _chosenDuration;
-    }
-
-    public void SetStartMsg(string activity)
-        {
-            _startMsg = "some Get here ref the child classes";
-        }
-
-    private void SetDescr(string description)  //ref the child class desc
-    {
-        _actDescr = description;
     }
 
     public void SetTime()//do I want this in Main?
@@ -41,7 +25,28 @@ public class Activity
 
     }
 
-    private void Spinner(int time)
+    public int GetTime()
+    {
+        return _chosenDuration;
+    }
+
+    public void SetFirstMsgs(string activity, string description)  //ref the child class desc
+    {
+        _startMsg = activity;
+        _actDescr = description;
+    }
+
+    public void PrintStartGetTime()
+    {
+        Console.WriteLine($"Welcome to the {_actName} Activity");
+        Console.WriteLine();
+        Console.WriteLine(_actDescr);
+        Console.WriteLine();
+        SetTime();//do I want this in Main?
+        
+    }
+
+    public void Spinner(int time)
     {
         int _spintime = time*1000;
         
@@ -57,15 +62,34 @@ public class Activity
         } while (_totTime <= time);
     }
 
-    private void GetReady()
+    public void ReadyMsg()
     {
         Console.WriteLine("Get ready...");
         Spinner(4);
     }
 
-    private void EndMsg()
+    public void EndMsg()
     {
-        Console.WriteLine($"Well done!!\n\nYou have completed another {_chosenDuration} seconds of the {_chosenActivity} Activity.");
+        Console.WriteLine($"Well done!!");
         Spinner(4);
+        Console.WriteLine($"\nYou have completed another {_chosenDuration} seconds of the {_chosenActivity} Activity.");
+        Spinner(4);
+    }
+
+    public DateTime Timer()
+    {
+        DateTime begin = DateTime.Now;
+        DateTime end = begin.AddSeconds(_chosenDuration);
+        return end;
+    }
+
+    public void CountDown(int seconds)
+    {
+        timedown = seconds;
+        do
+        {
+            timedown--;
+            Console.Write($"{timedown}\b");
+        } while (timedown > 0);
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 
 class Program
 {
@@ -9,6 +10,7 @@ class Program
 
         string choice;
         string startMsg;
+        DateTime endTime;
 
         Console.WriteLine("Welcome to the Mindfulness Program");
         Console.WriteLine("\t1. Start breathing activity");
@@ -21,16 +23,43 @@ class Program
         switch(choice)
         {
         case "1":
-            startMsg = "something to begin each activity routine";
+            Activity breath = new Activity(choice);
+            //set the _actName and _actDescr HERE
+            breath.PrintStartGetTime();
+            breath.ReadyMsg();
+            do
+            {
+                endTime = breath.Timer();
+                //do the activity here
+            } while (DateTime.Now <= endTime);
+            breath.EndMsg();
             break;
         case "2":
-            startMsg = "";
+            Activity reflect = new Activity(choice);
+            //set the _actName and _actDescr HERE
+            reflect.PrintStartGetTime();
+            reflect.ReadyMsg();
+            do
+            {
+                endTime = reflect.Timer();
+                //do the activity here
+            } while (DateTime.Now <= endTime);
+            reflect.EndMsg();
             break;
         case "3":
-            startMsg = "";
+            Activity listen = new Activity(choice);
+            //set the _actName and _actDescr HERE
+            listen.PrintStartGetTime();
+            listen.ReadyMsg();
+            do
+            {
+                endTime = listen.Timer();
+                //do the activity here
+            } while (DateTime.Now <= endTime);
+            listen.EndMsg();
             break;
         default: 
-            startMsg = "something went wrong";
+            Console.WriteLine("something went wrong");
             break;
         }
     }
