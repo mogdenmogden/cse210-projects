@@ -36,7 +36,7 @@ public class Activity
         _actDescr = description;
     }
 
-    public void PrintStartGetTime()
+    public void PrintStartGetTime()  //consider GetFirstMsgs() and pushing  the SetTime into SetFirstMsgs() or into the Constructor
     {
         Console.WriteLine($"Welcome to the {_actName} Activity");
         Console.WriteLine();

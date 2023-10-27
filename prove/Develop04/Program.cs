@@ -23,16 +23,16 @@ class Program
         switch(choice)
         {
         case "1":
-            Activity breath = new Activity(choice);
+            Activity breathe = new Activity(choice);
             //set the _actName and _actDescr HERE
-            breath.PrintStartGetTime();
-            breath.ReadyMsg();
+            breathe.PrintStartGetTime();
+            breathe.ReadyMsg();
             do
             {
-                endTime = breath.Timer();
+                endTime = breathe.Timer();
                 //do the activity here
             } while (DateTime.Now <= endTime);
-            breath.EndMsg();
+            breathe.EndMsg();
             break;
         case "2":
             Activity reflect = new Activity(choice);

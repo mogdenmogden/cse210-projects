@@ -1,10 +1,10 @@
-public class Breath : Activity
+public class Breathe : Activity
 {
     private string _actName;
     private string _actDescr;
     private int _chosenDuration;
 
-    public Breath(string choiceA) : base(choiceA)
+    public Breathe(string choiceA) : base(choiceA)
     {
         _actName = "Breathing";
         _actDescr = "This activity will help you relax by walking you thorugh breathing in an dout slowly.\nClear your mind and focus on your breathing.";

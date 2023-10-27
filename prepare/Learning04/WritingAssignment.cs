@@ -7,9 +7,9 @@ public class WritingAssignment : Assignment
         _title = title;
     }
 
-    public string GetWritingAssignment()
+    public string GetWritingAssignment() 
     {
-        return _title+" by "+_studentName;
+        return _title+" by "+ GetName();
     }
 
 
