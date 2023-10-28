@@ -12,7 +12,11 @@ class Program
         string startMsg;
         DateTime endTime;
 
-        Console.WriteLine("Welcome to the Mindfulness Program");
+        Console.WriteLine("Welcome to the Mindfulness Program.");
+        
+        //start the do while HERE
+        Console.Clear();
+        Console.WriteLine("Menu Options:");
         Console.WriteLine("\t1. Start breathing activity");
         Console.WriteLine("\t2. Start reflecting activity");
         Console.WriteLine("\t3. Start listing activity");
@@ -24,39 +28,26 @@ class Program
         {
         case "1":
             Activity breathe = new Activity(choice);
-            //set the _actName and _actDescr HERE
-            breathe.PrintStartGetTime();
             breathe.ReadyMsg();
-            do
-            {
-                endTime = breathe.Timer();
-                //do the activity here
-            } while (DateTime.Now <= endTime);
+            // breathe.RunBreathe();
+            // do //THIS SHOULD BE RUNBREATHE, OR SOMETHING NEAR TO THIS
+            // {
+            //     endTime = breathe.Timer();  
+            //     //do the activity here
+            // } while (DateTime.Now <= endTime);
             breathe.EndMsg();
             break;
         case "2":
             Activity reflect = new Activity(choice);
-            //set the _actName and _actDescr HERE
-            reflect.PrintStartGetTime();
             reflect.ReadyMsg();
-            do
-            {
-                endTime = reflect.Timer();
-                //do the activity here
-            } while (DateTime.Now <= endTime);
+            // reflect.RunReflect();
             reflect.EndMsg();
             break;
         case "3":
-            Activity listen = new Activity(choice);
-            //set the _actName and _actDescr HERE
-            listen.PrintStartGetTime();
-            listen.ReadyMsg();
-            do
-            {
-                endTime = listen.Timer();
-                //do the activity here
-            } while (DateTime.Now <= endTime);
-            listen.EndMsg();
+            Activity list = new Activity(choice);
+            list.ReadyMsg();
+            // list.RunList();
+            list.EndMsg();
             break;
         default: 
             Console.WriteLine("something went wrong");
@@ -64,6 +55,4 @@ class Program
         }
     }
 
-
-    }
 }

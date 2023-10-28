@@ -4,49 +4,63 @@ public class Activity
 {
     private string _chosenActivity;
     private int _chosenDuration;
-    private string _actName;
-    private string _actDescr;
+    // private string _activName;
+    private string _activDesc;
     private string _startMsg;
-    private string _getReady;
+    // private string _getReady;
     private int _totTime;
     private int timedown;
 
-    public Activity(string choiceA)
+    public Activity(string choice)
     {
-        _chosenActivity = choiceA;
-        //_chosenDuration = choiceD;
+        _chosenActivity = choice;
+        switch(choice)
+        {
+            case "1":
+                _chosenActivity = "Breathing";
+                _activDesc = "This activity will help you relax by walking your through breathing in and out slowly. Clear your mind and focus on your breathing.";
+                break;
+            case "2":
+                _chosenActivity = "Reflecting";
+                _activDesc = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
+                break;
+            case "3":
+                _chosenActivity = "Listing";
+                _activDesc = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
+                break;
+            default: 
+                break;
+        }
+        
+        SetStartMsg(_chosenActivity);
+        GetStartMsg();
+        SetTime();
         
     }
 
-    public void SetTime()//do I want this in Main?
+    private void SetStartMsg(string choice)
     {
-        Console.Write("How long, in seconds, would you like for your session? ");
-        _chosenDuration = int.Parse(Console.ReadLine());
-
+        string _startMsg = "Welcome to the "+choice+" Activity.\n"+_activDesc;
     }
 
+    private void GetStartMsg()
+    {
+        Console.WriteLine(_startMsg);
+    }
+
+    public void SetTime()
+    {
+        Console.Write("How long, in seconds, would you like for your session?  ");
+        _chosenDuration = int.Parse(Console.ReadLine());
+    }
     public int GetTime()
     {
         return _chosenDuration;
     }
 
-    public void SetFirstMsgs(string activity, string description)  //ref the child class desc
-    {
-        _startMsg = activity;
-        _actDescr = description;
-    }
 
-    public void PrintStartGetTime()  //consider GetFirstMsgs() and pushing  the SetTime into SetFirstMsgs() or into the Constructor
-    {
-        Console.WriteLine($"Welcome to the {_actName} Activity");
-        Console.WriteLine();
-        Console.WriteLine(_actDescr);
-        Console.WriteLine();
-        SetTime();//do I want this in Main?
-        
-    }
 
-    public void Spinner(int time)
+    public void Spin(int time)
     {
         int _spintime = time*1000;
         
@@ -64,16 +78,17 @@ public class Activity
 
     public void ReadyMsg()
     {
+        Console.Clear();
         Console.WriteLine("Get ready...");
-        Spinner(4);
+        Spin(4);
     }
 
     public void EndMsg()
     {
-        Console.WriteLine($"Well done!!");
-        Spinner(4);
-        Console.WriteLine($"\nYou have completed another {_chosenDuration} seconds of the {_chosenActivity} Activity.");
-        Spinner(4);
+        Console.WriteLine($"\nWell done!!");
+        Spin(4);
+        Console.WriteLine($"\nYou have spent {_chosenDuration} seconds practising mindfulness using the {_chosenActivity} Activity.\n");
+        Spin(4);
     }
 
     public DateTime Timer()
