@@ -8,8 +8,12 @@ public class Activity
     private string _activDesc;
     private string _startMsg;
     // private string _getReady;
-    private int _totTime;
-    private int timedown;
+    protected DateTime _beginNow;
+    protected DateTime _endTime;
+    private int _timedown;
+    private int _spinTimeSoFar; 
+    protected DateTime _now;
+
 
     public Activity(string choice)
     {
@@ -32,48 +36,62 @@ public class Activity
                 break;
         }
         
-        SetStartMsg(_chosenActivity);
-        GetStartMsg();
-        SetTime();
+        Console.Clear();
+        SetStartMsg(_chosenActivity); 
+        GetStartMsg(); 
+        
         
     }
 
     private void SetStartMsg(string choice)
     {
-        string _startMsg = "Welcome to the "+choice+" Activity.\n"+_activDesc;
+        string _startMsg = $"Welcome to the "+choice+" Activity.\n\n"+_activDesc;
+        //Console.WriteLine($"Welcome to the {choice} Activity.\n{_activDesc}");
+        Console.WriteLine(_startMsg);
     }
 
     private void GetStartMsg()
     {
         Console.WriteLine(_startMsg);
+        Console.Write("How long, in seconds, would you like for your session?  ");
+        _chosenDuration = int.Parse(Console.ReadLine());
     }
 
     public void SetTime()
     {
-        Console.Write("How long, in seconds, would you like for your session?  ");
-        _chosenDuration = int.Parse(Console.ReadLine());
+        // Console.Write("How long, in seconds, would you like for your session?  ");
+        // _chosenDuration = int.Parse(Console.ReadLine());
+        _beginNow = DateTime.Now;
+        
     }
-    public int GetTime()
+    public DateTime GetEndTime()
     {
-        return _chosenDuration;
+        _endTime =  _beginNow.AddSeconds(_chosenDuration);
+        return _endTime;
     }
 
-
+    public void GetTimeNow()
+    {
+        _now = DateTime.Now;
+    }
 
     public void Spin(int time)
     {
         int _spintime = time*1000;
         
-        _totTime = 0;
-        int increment = 200;
+        _spinTimeSoFar = 0;
+        int increment = 100;
         do 
         {
-            Console.Write("-"); Thread.Sleep(increment*time); _totTime =_totTime+increment;
-            Console.Write("\b\\"); Thread.Sleep(increment*time); _totTime =_totTime+increment;
-            Console.Write("\b|"); Thread.Sleep(increment*time); _totTime =_totTime+increment;
-            Console.Write("\b/"); Thread.Sleep(increment*time); _totTime =_totTime+increment;
-            Console.Write("\b*\b"); Thread.Sleep(increment*time); _totTime =_totTime+increment;
-        } while (_totTime <= time);
+            Console.Write("- "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("\b\b\\ "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("\b\b| "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("\b\b/ "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("\b\b");
+        } while (_spinTimeSoFar <= time*1000);
+        Console.Write(" ");
+        Console.WriteLine();
+
     }
 
     public void ReadyMsg()
@@ -85,26 +103,29 @@ public class Activity
 
     public void EndMsg()
     {
-        Console.WriteLine($"\nWell done!!");
+        Console.WriteLine($"Well done!!");
         Spin(4);
-        Console.WriteLine($"\nYou have spent {_chosenDuration} seconds practising mindfulness using the {_chosenActivity} Activity.\n");
+        Console.WriteLine($"You spent {_chosenDuration} seconds practising mindfulness using the {_chosenActivity} Activity.");
         Spin(4);
     }
 
-    public DateTime Timer()
-    {
-        DateTime begin = DateTime.Now;
-        DateTime end = begin.AddSeconds(_chosenDuration);
-        return end;
-    }
+    // public DateTime Timer()
+    // {
+    //     DateTime begin = DateTime.Now;
+    //     DateTime end = begin.AddSeconds(_chosenDuration);
+    //     return end;
+    // }
 
     public void CountDown(int seconds)
     {
-        timedown = seconds;
+        _timedown = seconds;
         do
         {
-            timedown--;
-            Console.Write($"{timedown}\b");
-        } while (timedown > 0);
+            Console.Write("\b\b");
+            Console.Write($"{_timedown} ");
+            Thread.Sleep(1000);
+            _timedown--;
+        } while (_timedown >= 0);
+        Console.Write("\b\b ");
     }
 }
