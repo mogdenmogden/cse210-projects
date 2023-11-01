@@ -98,15 +98,15 @@ public class Activity
     {
         Console.Clear();
         Console.WriteLine("Get ready...");
-        Spin(4);
+        Spin(3);
     }
 
     public void EndMsg()
     {
         Console.WriteLine($"Well done!!");
-        Spin(4);
+        Spin(3);
         Console.WriteLine($"You spent {_chosenDuration} seconds practising mindfulness using the {_chosenActivity} Activity.");
-        Spin(4);
+        Spin(3);
     }
 
     // public DateTime Timer()
@@ -128,4 +128,14 @@ public class Activity
         } while (_timedown >= 0);
         Console.Write("\b\b ");
     }
+
+    protected List<int> SetPicks(List<string> reflections, List<string> questions)
+    {
+        Random picker = new Random();
+        List<int> choices = new List<int>();
+        choices.Add(picker.Next(0,reflections.Count));
+        choices.Add(picker.Next(0,questions.Count));
+        return choices;
+    }
+
 }

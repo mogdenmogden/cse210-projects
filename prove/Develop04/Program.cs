@@ -41,9 +41,9 @@ class Program
                 breathe.EndMsg();
                 break;
             case "2":
-                Activity reflect = new Activity(choice);
+                Reflect reflect = new Reflect(choice);
                 reflect.ReadyMsg();
-                // reflect.RunReflect();
+                reflect.RunReflect();
                 reflect.EndMsg();
                 break;
             case "3":
