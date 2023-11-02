@@ -3,9 +3,6 @@ public class List : Activity
     private List<string> _prompts; 
     private List<string> _entries; 
     private List<string> _ignore; 
-    // private Random _random;
-    // private int _entryTally; 
-    // private string _thisPrompt;
     private List<int> _pickTheseOne;
     private int _countDownSeconds;
 
@@ -26,16 +23,6 @@ public class List : Activity
         _ignore = ignore;
         
     }
-
-    // private void SetPrompt(int pick) 
-    // {
-    //     _thisPrompt = _prompts[pick];
-    // }
-
-    // private string GetPrompt() 
-    // {
-    //     return _thisPrompt;
-    // }
 
     private void InitializeEntries() //a list to keep the user entries in
     {
@@ -64,5 +51,18 @@ public class List : Activity
             GetTimeNow();
         } while (_now < _endTime);
         Console.WriteLine($"You listed {_entries.Count} items!\n");
+        Console.WriteLine($"Here are the entries you made: ");
+        foreach (string item in _entries)
+        {
+            if (item == _entries[_entries.Count-1])
+            {
+                Console.Write($"{item} \n");
+            }
+            else
+            {
+                Console.Write($"{item}, ");
+            }
+        }
+        Console.WriteLine();
     }
 }

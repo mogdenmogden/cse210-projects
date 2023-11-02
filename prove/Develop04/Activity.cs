@@ -4,10 +4,8 @@ public class Activity
 {
     private string _chosenActivity;
     private int _chosenDuration;
-    // private string _activName;
     private string _activDesc;
     private string _startMsg;
-    // private string _getReady;
     protected DateTime _beginNow;
     protected DateTime _endTime;
     private int _timedown;
@@ -55,23 +53,23 @@ public class Activity
         _chosenDuration = int.Parse(Console.ReadLine());
     }
 
-    public void SetTime()
+    protected void SetTime()
     {
         _beginNow = DateTime.Now;
         
     }
-    public DateTime GetEndTime()
+    protected DateTime GetEndTime()
     {
         _endTime =  _beginNow.AddSeconds(_chosenDuration);
         return _endTime;
     }
 
-    public void GetTimeNow()
+    protected void GetTimeNow()
     {
         _now = DateTime.Now;
     }
 
-    public void Spin(int time)
+    protected void Spin(int time)
     {
         int _spintime = time*1000;
         
@@ -79,10 +77,10 @@ public class Activity
         int increment = 100;
         do 
         {
-            Console.Write("- "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
-            Console.Write("\b\b\\ "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
-            Console.Write("\b\b| "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
-            Console.Write("\b\b/ "); Thread.Sleep(increment); _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("- ");        Thread.Sleep(increment);    _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("\b\b\\ ");   Thread.Sleep(increment);    _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("\b\b| ");    Thread.Sleep(increment);    _spinTimeSoFar =_spinTimeSoFar+increment;
+            Console.Write("\b\b/ ");    Thread.Sleep(increment);    _spinTimeSoFar =_spinTimeSoFar+increment;
             Console.Write("\b\b");
         } while (_spinTimeSoFar <= time*1000);
         Console.Write(" ");
@@ -105,7 +103,7 @@ public class Activity
         Spin(3);
     }
 
-    public void CountDown(int seconds)
+    protected void CountDown(int seconds)
     {
         _timedown = seconds;
         do
