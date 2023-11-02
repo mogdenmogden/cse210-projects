@@ -13,7 +13,7 @@ public class Activity
     private int _timedown;
     private int _spinTimeSoFar; 
     protected DateTime _now;
-
+    protected string _thisPrompt;
 
     public Activity(string choice)
     {
@@ -125,6 +125,11 @@ public class Activity
         choices.Add(picker.Next(0,reflections.Count));
         choices.Add(picker.Next(0,questions.Count));
         return choices;
+    }
+
+    protected void SetPrompt(List<string> list, int pick) 
+    {
+        _thisPrompt = list[pick];
     }
 
 }
