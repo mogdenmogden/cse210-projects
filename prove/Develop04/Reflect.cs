@@ -33,14 +33,14 @@ public class Reflect : Activity
         _questions = questions;
     }
 
-    public List<int> RandomPicker(int questionsPlusOne, int reflectionsPlusOne)
-    {
-        Random random = new();
-        List<int> _pickThisOne = new List<int>();
-        _pickThisOne.Add(random.Next(1,1+_questions.Count));
-        _pickThisOne.Add(random.Next(1,1+_reflections.Count));
-        return _pickThisOne;
-    }
+    // public List<int> RandomPicker(int questionsPlusOne, int reflectionsPlusOne)
+    // {
+    //     Random random = new();
+    //     List<int> _pickThisOne = new List<int>();
+    //     _pickThisOne.Add(random.Next(1,1+_questions.Count));
+    //     _pickThisOne.Add(random.Next(1,1+_reflections.Count));
+    //     return _pickThisOne;
+    // }
 
     private void SetReflection(int pick)
     {
@@ -64,16 +64,11 @@ public class Reflect : Activity
 
     public void RunReflect()
     {
-        // foreach (string reflection in _reflections)
-        // {
-        //     Console.WriteLine(reflection)   ;
-        // }
-        
         _pickThisOne = SetPicks(_reflections,_questions);
         SetReflection(_pickThisOne[0]);
         // SetQuestion(_pickThisOne[1]);
         Console.WriteLine("Consider the following prompt:");
-        Console.WriteLine($" --- {_thisReflection} --- ");
+        Console.WriteLine($"\n --- {_thisReflection} --- \n");
         Console.WriteLine("When you have something in mind, press Enter to continue. ");
         Console.ReadLine();
         Console.WriteLine("Now consider each of the following questions and how they relate to the above experience. ");
@@ -90,7 +85,7 @@ public class Reflect : Activity
             _pickThisOne = SetPicks(_reflections,_questions);
             SetQuestion(_pickThisOne[1]);
             Console.Write($"> {GetQuestion()} ");
-            Spin(3);
+            Spin(6);
             Console.WriteLine();
             GetTimeNow();
         } while (_now < _endTime);

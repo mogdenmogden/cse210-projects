@@ -40,14 +40,12 @@ public class Activity
         SetStartMsg(_chosenActivity); 
         GetStartMsg(); 
         
-        
     }
 
     private void SetStartMsg(string choice)
     {
-        string _startMsg = $"Welcome to the "+choice+" Activity.\n\n"+_activDesc;
-        //Console.WriteLine($"Welcome to the {choice} Activity.\n{_activDesc}");
-        Console.WriteLine(_startMsg);
+        string startMsg = $"Welcome to the "+choice+" Activity.\n\n"+_activDesc;
+        _startMsg = startMsg;
     }
 
     private void GetStartMsg()
@@ -59,8 +57,6 @@ public class Activity
 
     public void SetTime()
     {
-        // Console.Write("How long, in seconds, would you like for your session?  ");
-        // _chosenDuration = int.Parse(Console.ReadLine());
         _beginNow = DateTime.Now;
         
     }
@@ -105,16 +101,9 @@ public class Activity
     {
         Console.WriteLine($"Well done!!");
         Spin(3);
-        Console.WriteLine($"You spent {_chosenDuration} seconds practising mindfulness using the {_chosenActivity} Activity.");
+        Console.WriteLine($"You spent {_chosenDuration} seconds practicing mindfulness using the {_chosenActivity} Activity.");
         Spin(3);
     }
-
-    // public DateTime Timer()
-    // {
-    //     DateTime begin = DateTime.Now;
-    //     DateTime end = begin.AddSeconds(_chosenDuration);
-    //     return end;
-    // }
 
     public void CountDown(int seconds)
     {

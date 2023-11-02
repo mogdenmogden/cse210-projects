@@ -33,11 +33,6 @@ class Program
                 Breathe breathe = new Breathe(choice);
                 breathe.ReadyMsg();
                 breathe.RunBreathe();
-                // do //THIS SHOULD BE RUNBREATHE, OR SOMETHING NEAR TO THIS
-                // {
-                //     endTime = breathe.Timer();  
-                //     //do the activity here
-                // } while (DateTime.Now <= endTime);
                 breathe.EndMsg();
                 break;
             case "2":
@@ -47,9 +42,9 @@ class Program
                 reflect.EndMsg();
                 break;
             case "3":
-                Activity list = new Activity(choice);
+                List list = new List(choice);
                 list.ReadyMsg();
-                // list.RunList();
+                list.RunList();
                 list.EndMsg();
                 break;
             default: 
