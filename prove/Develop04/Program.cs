@@ -5,13 +5,10 @@ class Program
 {
     static void Main(string[] args)
     {
-        //Console.WriteLine("Hello Develop04 World!");
         //Menu system to choose an activity
 
-        string choice;
-        // string startMsg;
-        // DateTime endTime;
-        string[] choiceSet = {"1","2","3","4"};
+        string _choice;
+        string[] _choiceSet = {"1","2","3"};  //controls the do while on the menu
 
         Console.WriteLine("Welcome to the Mindfulness Program.");
         
@@ -25,33 +22,33 @@ class Program
             Console.WriteLine("\t3. Start listing activity");
             Console.WriteLine("\t4. Quit");
             Console.Write("Select a choice from the menu:  ");
-            choice = Console.ReadLine();
+            _choice = Console.ReadLine();
             
-            switch(choice)
+            switch(_choice)
             {
             case "1":
-                Breathe breathe = new Breathe(choice);
-                breathe.ReadyMsg();
+                Breathe breathe = new Breathe(_choice);
+                breathe.WriteReadyMsg();
                 breathe.RunBreathe();
-                breathe.EndMsg();
+                breathe.WriteEndMsg();
                 break;
             case "2":
-                Reflect reflect = new Reflect(choice);
-                reflect.ReadyMsg();
+                Reflect reflect = new Reflect(_choice);
+                reflect.WriteReadyMsg();
                 reflect.RunReflect();
-                reflect.EndMsg();
+                reflect.WriteEndMsg();
                 break;
             case "3":
-                List list = new List(choice);
-                list.ReadyMsg();
+                List list = new List(_choice);
+                list.WriteReadyMsg();
                 list.RunList();
-                list.EndMsg();
+                list.WriteEndMsg();
                 break;
             default: 
                 Console.WriteLine("Good bye.");
                 return;
             }
-        } while (choiceSet.Contains(choice));
+        } while (_choiceSet.Contains(_choice));
     }
 
 }

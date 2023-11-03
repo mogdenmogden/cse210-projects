@@ -3,7 +3,7 @@ public class List : Activity
     private List<string> _prompts; 
     private List<string> _entries; 
     private List<string> _ignore; 
-    private List<int> _pickTheseOne;
+    private List<int> _chosen;
     private int _countDownSeconds;
 
     public List(string choiceA) : base(choiceA)
@@ -18,13 +18,13 @@ public class List : Activity
         prompts.Add("Who are some of your personal heroes?");
         _prompts = prompts;
 
-        List<string> ignore = new List<string>();
+        List<string> ignore = new List<string>();  //this is a list<string> to use as a placeholder in SetPicks()
         ignore.Add("this is a placeholder");
-        _ignore = ignore;
+        _ignore = ignore;                           //name chosen purposefully, so the dev doesn't get hung up on it
         
     }
 
-    private void InitializeEntries() //a list to keep the user entries in
+    private void InitializeEntries() //a list to keep the user entries in, to be used later for count and display
     {
         List<string> entries = new List<string>();
         _entries = entries;
@@ -33,16 +33,16 @@ public class List : Activity
     public void RunList()
     {
         InitializeEntries();
-        _pickTheseOne = SetPicks(_prompts,_ignore);
-        SetPrompt(_prompts,_pickTheseOne[0]);
+        _chosen = SetPicks(_prompts,_ignore);  //pick one thing from the prompt list. Don't need a second list except as a placeholder for SetPicks()
+        SetPrompt(_prompts,_chosen[0]);         //choose one prompt from the list
         Console.WriteLine("List as many responses as you can to the following prompt:");
         Console.WriteLine($"\n --- {_thisPrompt} --- \n");
         Console.Write($"You may begin in...  "); 
         CountDown(_countDownSeconds);
         // Console.Clear();
         Console.WriteLine();
-        SetTime();
-        GetEndTime();
+        SetTime();  //beginning time
+        GetEndTime();  //end time calculation and to establish the ending time attribute
 
         do
         {
@@ -54,7 +54,7 @@ public class List : Activity
         Console.WriteLine($"Here are the entries you made: ");
         foreach (string item in _entries)
         {
-            if (item == _entries[_entries.Count-1])
+            if (item == _entries[_entries.Count-1])  //no comma on the last entry in the list
             {
                 Console.Write($"{item} \n");
             }

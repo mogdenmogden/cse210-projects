@@ -33,23 +33,23 @@ public class Reflect : Activity
 
     public void RunReflect()
     {
-        _pickThisOne = SetPicks(_reflections,_questions);
-        SetPrompt(_reflections,_pickThisOne[0]);
+        _pickThisOne = SetPicks(_reflections,_questions);  //choose two things from two lists using a list of two ints
+        SetPrompt(_reflections,_pickThisOne[0]);  //I only use the first list choice this time.
         Console.WriteLine("Consider the following prompt:");
-        Console.WriteLine($"\n --- {_thisPrompt} --- \n");  
+        Console.WriteLine($"\n --- {_thisPrompt} --- \n");  //display the choice
         Console.WriteLine("When you have something in mind, press Enter to continue. ");
         Console.ReadLine();
         Console.WriteLine("Now consider each of the following questions and how they relate to the above experience. ");
         Console.Write($"You may begin in...  "); 
         CountDown(_countDownSeconds);
         Console.Clear();
-        SetTime();
-        GetEndTime();
+        SetTime();  //beginning time
+        GetEndTime();  //end time calculation and to establish the ending time attribute
 
         do
         {
-            _pickThisOne = SetPicks(_reflections,_questions);
-            SetPrompt(_questions,_pickThisOne[1]);
+            _pickThisOne = SetPicks(_reflections,_questions);  //must be reestablished so that a new one is chosen each cycle
+            SetPrompt(_questions,_pickThisOne[1]);  //I only use the second list choice this time.
             Console.Write($"> {_thisPrompt} "); 
             Spin(6);
             Console.WriteLine();

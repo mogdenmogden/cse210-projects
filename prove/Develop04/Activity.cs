@@ -40,16 +40,16 @@ public class Activity
         
     }
 
-    private void SetStartMsg(string choice)
+    private void SetStartMsg(string choice)  //set up the start message with activity name and the description
     {
         string startMsg = $"Welcome to the "+choice+" Activity.\n\n"+_activDesc;
         _startMsg = startMsg;
     }
 
-    private void GetStartMsg()
+    private void GetStartMsg()  //display the whole start message and prompt for duration
     {
         Console.WriteLine(_startMsg);
-        Console.Write("How long, in seconds, would you like for your session?  ");
+        Console.Write("\nHow long, in seconds, would you like for your session?  ");
         _chosenDuration = int.Parse(Console.ReadLine());
     }
 
@@ -69,7 +69,7 @@ public class Activity
         _now = DateTime.Now;
     }
 
-    protected void Spin(int time)
+    protected void Spin(int time)  //a spinning bar
     {
         int _spintime = time*1000;
         
@@ -88,14 +88,14 @@ public class Activity
 
     }
 
-    public void ReadyMsg()
+    public void WriteReadyMsg()  //get ready to go
     {
         Console.Clear();
         Console.WriteLine("Get ready...");
         Spin(3);
     }
 
-    public void EndMsg()
+    public void WriteEndMsg()  //displays the ending messages
     {
         Console.WriteLine($"Well done!!");
         Spin(3);
@@ -103,7 +103,7 @@ public class Activity
         Spin(3);
     }
 
-    protected void CountDown(int seconds)
+    protected void CountDown(int seconds) //the timer counting down ...4  ...3  etc.
     {
         _timedown = seconds;
         do
@@ -112,11 +112,11 @@ public class Activity
             Console.Write($"{_timedown} ");
             Thread.Sleep(1000);
             _timedown--;
-        } while (_timedown >= 0);
+        } while (_timedown >= 1);
         Console.Write("\b\b ");
     }
 
-    protected List<int> SetPicks(List<string> reflections, List<string> questions)
+    protected List<int> SetPicks(List<string> reflections, List<string> questions) //choose two things from two lists using a list of two ints
     {
         Random picker = new Random();
         List<int> choices = new List<int>();
@@ -125,7 +125,7 @@ public class Activity
         return choices;
     }
 
-    protected void SetPrompt(List<string> list, int pick) 
+    protected void SetPrompt(List<string> list, int pick) //choose one thing from one list
     {
         _thisPrompt = list[pick];
     }

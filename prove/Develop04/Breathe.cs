@@ -11,8 +11,8 @@ public class Breathe : Activity
 
     public void RunBreathe() 
     {
-        SetTime(); 
-        GetEndTime(); 
+        SetTime(); //beginning time
+        GetEndTime(); //end time calculation and to establish the ending time attribute
         do
         {
             Console.Write($"Breathe in...  "); 
@@ -23,6 +23,6 @@ public class Breathe : Activity
             Console.WriteLine();
             Console.WriteLine();
             GetTimeNow();
-        } while (_now < _endTime);
+        } while (_now < _endTime);  //time right now vs the established end time
     }
 }
