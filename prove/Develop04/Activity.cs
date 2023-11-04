@@ -12,6 +12,7 @@ public class Activity
     private int _spinTimeSoFar; 
     protected DateTime _now;
     protected string _thisPrompt;
+    protected int _spinSeconds = 2;
 
     public Activity(string choice)
     {
@@ -92,15 +93,15 @@ public class Activity
     {
         Console.Clear();
         Console.WriteLine("Get ready...");
-        Spin(3);
+        Spin(_spinSeconds);
     }
 
     public void WriteEndMsg()  //displays the ending messages
     {
         Console.WriteLine($"Well done!!");
-        Spin(3);
+        Spin(_spinSeconds);
         Console.WriteLine($"You spent {_chosenDuration} seconds practicing mindfulness using the {_chosenActivity} Activity.");
-        Spin(3);
+        Spin(_spinSeconds);
     }
 
     protected void CountDown(int seconds) //the timer counting down ...4  ...3  etc.

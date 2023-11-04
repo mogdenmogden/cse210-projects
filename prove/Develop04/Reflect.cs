@@ -5,6 +5,7 @@ public class Reflect : Activity
     private List<string> _reflections;
     private List<string> _questions;
     private List<int> _pickThisOne;
+    // private List<string> _usedQuestions;
     private int _countDownSeconds;
     
     public Reflect(string choiceA) : base(choiceA)
@@ -33,6 +34,7 @@ public class Reflect : Activity
 
     public void RunReflect()
     {
+        List<string> usedQuestions = new List<string>();
         _pickThisOne = SetPicks(_reflections,_questions);  //choose two things from two lists using a list of two ints
         SetPrompt(_reflections,_pickThisOne[0]);  //I only use the first list choice this time.
         Console.WriteLine("Consider the following prompt:");
@@ -45,15 +47,34 @@ public class Reflect : Activity
         Console.Clear();
         SetTime();  //beginning time
         GetEndTime();  //end time calculation and to establish the ending time attribute
-
+        int repeatNumber = _questions.Count;
         do
         {
+
+            if (repeatNumber == 0)
+            {
+                // _questions = usedQuestions;
+                foreach (string question in usedQuestions)
+                {
+                    _questions.Add(question);
+                }
+                usedQuestions.Clear(); 
+                repeatNumber = _questions.Count;
+            }
+            
             _pickThisOne = SetPicks(_reflections,_questions);  //must be reestablished so that a new one is chosen each cycle
+          
             SetPrompt(_questions,_pickThisOne[1]);  //I only use the second list choice this time.
+            int indexPlace = _pickThisOne[1];
             Console.Write($"> {_thisPrompt} "); 
-            Spin(6);
+            _questions.RemoveAt(indexPlace);
+            usedQuestions.Add(_thisPrompt);
+            repeatNumber--;
+            Spin(_spinSeconds);
             Console.WriteLine();
             GetTimeNow();
+
+
         } while (_now < _endTime);
     }
 }
