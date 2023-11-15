@@ -1,35 +1,21 @@
-public abstract class Goal
+public class Goal
 {
-    protected string _goalName, _goalDesc, _doneMark = "X", _fileName;
+    protected string _goalName, _goalDesc, _doneMark = "X", _fileName,_goalType;
     protected int _thisGoalPoints = 0, _pointTotal = 0;
-    protected List<Goal> _goalList;
-    protected string[] _loadedLines;
+    protected List<string> _goalList;
+    protected List<string> _loadedLines;
     protected bool _isDone = false;
-    protected List<string> _goalPackage;
+    //protected List<string> _goalPackage;
 
-    public Goal(string name, string desc, int points, bool _Done)
+    public Goal(string goalType,string name, string desc, int points)
     {
+        List<string> _goalList = new List<string>();
+        _goalType = "Simple";
         SetGoalName(name);
         SetGoalDesc(desc);
         SetPoints(points);
+        PackageGoalStrings();
         
-        
-    }
-
-    private Goal(List<string> loadedLines)
-    {
-        foreach (string line in loadedLines)
-        {
-        //line[0] is the type of goal, ie "SimpleGoal"
-        SetGoalName(line[1]);
-        SetGoalDesc(line[2]);
-        SetPoints(line[3]);
-        if (line[4] is true)
-        {
-            _isDone = true;
-        }
-
-        }
     }
 
     private void SetGoalName(string name)
@@ -37,7 +23,7 @@ public abstract class Goal
         _goalName = name; 
     }
 
-    private string GetGoalName()
+    public string GetGoalName()
     {
         return _goalName;
     }
@@ -47,7 +33,7 @@ public abstract class Goal
         _goalDesc = name; 
     }
 
-    private string GetGoalDesc()
+    public string GetGoalDesc()
     {
         return _goalDesc;
     }
@@ -57,14 +43,25 @@ public abstract class Goal
         _thisGoalPoints = points; 
     }
 
-    private int GetPoints()
+    public int GetPoints()
     {
         return _thisGoalPoints;
     }
 
-    private void AwardPoints(int points)
+    public int GetTotalPoints()
     {
-        _pointTotal = _pointTotal + points;
+        return _pointTotal;
+    }
+
+    public bool IsComplete()
+    {
+        
+        return _isDone;
+    }
+
+    private void AwardPoints()
+    {
+        _pointTotal = _pointTotal + _thisGoalPoints;
     }
 
     private int DisplayPointTotal()
@@ -72,14 +69,32 @@ public abstract class Goal
         return _pointTotal;
     }
 
-    public void DisplayGoalList()
+    private void PackageGoalStrings()
     {
-        int indexNumber = 1;
-        Console.WriteLine("The goals are: ");
-        foreach (Goal goal in _goalList)
-        {
-            Console.WriteLine($"{indexNumber}. [{_doneMark}] {goal.[1]} ({goal.[2]})]")
-        }
+        Console.WriteLine("putting the name, desc,points into a list<String>");
+        List<string> goalPackage = new List<string>();
+        goalPackage.Add(_goalType); //0
+        goalPackage.Add(_goalName); //1
+        goalPackage.Add(_goalDesc); //2
+        goalPackage.Add(_thisGoalPoints.ToString()); //3
+        goalPackage.Add(_isDone.ToString()); //4
+        _goalList = goalPackage;
+        
     }
+    
+    public List<string> GetGoal()
+    {
+        return _goalList;
+    }
+
+    public void RecordEvent()
+    {
+        _isDone = true;
+        //_pointTotal = _pointTotal + _thisGoalPoints;
+        PackageGoalStrings();
+        AwardPoints();
+    }
+
+    
 
 }
