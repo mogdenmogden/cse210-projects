@@ -45,19 +45,21 @@ class Program
                 goalPick = Console.ReadLine();
                 if (goalPick == "1")
                 {
-                    // Console.WriteLine("making a simple goal");
-                    Console.Write("What is the name of your goal? ");
-                    string localName = Console.ReadLine();
-                    name = localName;
-                    Console.Write("Write a short description for this goal: ");
-                    string localDescription = Console.ReadLine();
-                    description = localDescription;
-                    Console.Write("How many points will this goal earn? ");
-                    int localGoalPoints = int.Parse(Console.ReadLine());
-                    thisGoalPoints = localGoalPoints;
-                    // Console.WriteLine($"{name}, {description}, {thisGoalPoints}");
-                    // Console.WriteLine("hey, what happened?");
-                    Goal aGoal = new Goal(choice,name,description,thisGoalPoints);
+                    //consider putting the goal making stuff in a goal class 
+                    // // Console.WriteLine("making a simple goal");
+                    // Console.Write("What is the name of your goal? ");
+                    // string localName = Console.ReadLine();
+                    // name = localName;
+                    // Console.Write("Write a short description for this goal: ");
+                    // string localDescription = Console.ReadLine();
+                    // description = localDescription;
+                    // Console.Write("How many points will this goal earn? ");
+                    // int localGoalPoints = int.Parse(Console.ReadLine());
+                    // thisGoalPoints = localGoalPoints;
+                    // // Console.WriteLine($"{name}, {description}, {thisGoalPoints}");
+                    // // Console.WriteLine("hey, what happened?");
+                    // Goal aGoal = new Goal(choice,name,description,thisGoalPoints);
+                    Goal aGoal = new Goal();
                     myGoals.Add(aGoal);
                 }
                 else if (goalPick == "2")
@@ -74,26 +76,27 @@ class Program
                 Console.WriteLine("The goals are: ");
                 foreach (Goal goal in myGoals)
                 {
-                    checkMark = " ";
-                    // List<string> goalData = goal.GetGoal();
-                    // string localName = goalData[1];
-                    // name = localName ;
-                    name = goal.GetGoalName();
-                    // string localDescription = goalData[2];//
-                    // description = localDescription;
-                    description = goal.GetGoalDesc();
-                    // int localGoalPoints = int.Parse(goalData[3]);//
-                    // thisGoalPoints = localGoalPoints;
-                    thisGoalPoints = goal.GetPoints();
-                    // bool thisGoalDone = bool.Parse(goalData[4]);//
-                    bool thisGoalDone = goal.IsComplete();
-                    // if (goalData[4] == "true")
-                    if (thisGoalDone == true)
-                    {
-                        checkMark = "X";
-                    };
-                    
-                    Console.WriteLine($"{indexNumber}. [{checkMark}] {name} ({description}) worth {thisGoalPoints} points");
+                    // checkMark = " ";
+                    // // List<string> goalData = goal.GetGoal();
+                    // // string localName = goalData[1];
+                    // // name = localName ;
+                    // name = goal.GetGoalName();
+                    // // string localDescription = goalData[2];//
+                    // // description = localDescription;
+                    // description = goal.GetGoalDesc();
+                    // // int localGoalPoints = int.Parse(goalData[3]);//
+                    // // thisGoalPoints = localGoalPoints;
+                    // thisGoalPoints = goal.GetPoints();
+                    // // bool thisGoalDone = bool.Parse(goalData[4]);//
+                    // bool thisGoalDone = goal.IsComplete();
+                    // // if (goalData[4] == "true")
+                    // if (thisGoalDone == true)
+                    // {
+                    //     checkMark = "X";
+                    // };
+                    // Console.WriteLine($"{indexNumber}. [{checkMark}] {name} ({description}) worth {thisGoalPoints} points");
+                    string lineOut = goal.ListGoals("long");
+                    Console.WriteLine($"{indexNumber}. {lineOut}");
                     indexNumber++;
                 }
                 // Console.WriteLine();
@@ -139,12 +142,13 @@ class Program
                 foreach (Goal goal in myGoals)
                 {
                     checkMark = " ";
-                    List<string> goalData = goal.GetGoal();
-                    string localName = goalData[1];//goal.GetGoalName();
-                    name = localName ;
-                    string localDescription = goalData[2];//goal.GetGoalDesc();
-                    description = localDescription;
-                    Console.WriteLine($"{itemNumber}. {name} ({description})");
+                    // List<string> goalData = goal.GetGoal();
+                    // string localName = goalData[1];//goal.GetGoalName();
+                    // name = localName ;
+                    // string localDescription = goalData[2];//goal.GetGoalDesc();
+                    // description = localDescription;
+                    string lineOut = goal.ListGoals("short");
+                    Console.WriteLine($"{itemNumber}. {lineOut}");
                     itemNumber++;
                 }
                 Console.Write("Which goal did you accomplish? ");
@@ -154,7 +158,7 @@ class Program
                 // List<string> thisAchievedSimpleGoal = recordThisOne.GetGoal();
                 pointsTotal = pointsTotal + recordThisOne.GetTotalPoints();
 
-                Console.WriteLine($"Congratulations! You earned {recordThisOne.GetTotalPoints()} points!\nYour new point total: {pointsTotal} points. ");
+                // Console.WriteLine($"Congratulations! You earned {recordThisOne.GetTotalPoints()} points!\nYour new point total: {pointsTotal} points. ");
                 break;
             default: 
                 Console.WriteLine("Good bye.");

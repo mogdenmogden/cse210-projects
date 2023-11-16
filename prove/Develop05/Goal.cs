@@ -2,14 +2,28 @@ public class Goal
 {
     protected string _goalName, _goalDesc, _doneMark = "X", _fileName,_goalType;
     protected int _thisGoalPoints = 0, _pointTotal = 0;
-    protected List<string> _goalList;
+    protected List<string> _goalPackage;
     protected string _newline;
     protected bool _isDone = false;
     //protected List<string> _goalPackage;
 
+    public Goal()
+    {
+        Console.Write("What is the name of your goal? ");
+        string localName = Console.ReadLine();
+        _goalName = localName;
+        Console.Write("Write a short description for this goal: ");
+        string localDescription = Console.ReadLine();
+        _goalDesc = localDescription;
+        Console.Write("How many points will this goal earn? ");
+        int localGoalPoints = int.Parse(Console.ReadLine());
+        _thisGoalPoints = localGoalPoints;
+        _isDone = false;
+    }
+
     public Goal(string goalType,string name, string desc, int points)
     {
-        List<string> _goalList = new List<string>();
+        List<string> _goalPackage = new List<string>();
         _goalType = "Simple";
         SetGoalName(name);
         SetGoalDesc(desc);
@@ -19,7 +33,7 @@ public class Goal
 
     public Goal(string goalType,string name, string desc, int points, bool done)
     {
-        List<string> _goalList = new List<string>();
+        List<string> _goalPackage = new List<string>();
         _goalType =goalType; //0
         SetGoalName(name); //1
         SetGoalDesc(desc); //2
@@ -28,12 +42,32 @@ public class Goal
         PackageGoalStrings();
     }
 
+    public string ListGoals(string longShort)  //add something to indicate done and then regulate record event by that thing
+    {
+        _doneMark = " ";
+        if (_isDone == true)
+        {
+            _doneMark = "X";
+        };
+        if (longShort == "long")
+        {
+            string lineOut = $"[{_doneMark}] {_goalName} ({_goalDesc}) worth {_thisGoalPoints} points";
+            return lineOut;
+        }
+        else
+        {
+            string lineOut = $"{_goalName} ({_goalDesc})";
+            return lineOut;
+        }
+        
+    }
+
     public string GetGoalType()
     {
         return _goalType;
     }
 
-    private void SetGoalName(string name)
+    protected void SetGoalName(string name)
     {
         _goalName = name; 
     }
@@ -43,7 +77,7 @@ public class Goal
         return _goalName;
     }
 
-    private void SetGoalDesc(string name)
+    protected void SetGoalDesc(string name)
     {
         _goalDesc = name; 
     }
@@ -53,7 +87,7 @@ public class Goal
         return _goalDesc;
     }
 
-    private void SetPoints(int points)
+    protected void SetPoints(int points)
     {
         _thisGoalPoints = points; 
     }
@@ -68,7 +102,7 @@ public class Goal
         return _pointTotal;
     }
 
-    private void SetComplete(bool doneStatus)
+    protected void SetComplete(bool doneStatus)
     {
         _isDone = doneStatus;
     }
@@ -78,7 +112,7 @@ public class Goal
         return _isDone;
     }
 
-    private void AwardPoints()
+    protected void AwardPoints()
     {
         _pointTotal = _pointTotal + _thisGoalPoints;
     }
@@ -88,7 +122,7 @@ public class Goal
         return _pointTotal;
     }
 
-    private void PackageGoalStrings()
+    protected void PackageGoalStrings()
     {
         //Console.WriteLine("putting the name, desc,points into a list<String>");
         List<string> goalPackage = new List<string>();
@@ -97,21 +131,30 @@ public class Goal
         goalPackage.Add(_goalDesc); //2
         goalPackage.Add(_thisGoalPoints.ToString()); //3
         goalPackage.Add(_isDone.ToString()); //4
-        _goalList = goalPackage;
+        _goalPackage = goalPackage;
         
     }
     
     public List<string> GetGoal()
     {
-        return _goalList;
+        return _goalPackage;
     }
 
     public void RecordEvent()
     {
-        _isDone = true;
-        //_pointTotal = _pointTotal + _thisGoalPoints;
-        PackageGoalStrings();
-        AwardPoints();
+        if (_isDone == true)
+        {
+            Console.WriteLine("You have already completed this goal. ");
+            
+        }
+        else
+        {
+            _isDone = true;
+            //_pointTotal = _pointTotal + _thisGoalPoints;
+            PackageGoalStrings();
+            AwardPoints();
+            Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points!\nYour new point total: {_pointTotal} points. ");
+        }
     }
     
     public void SetStringRepresentation(Goal goal)

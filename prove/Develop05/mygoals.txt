@@ -7,3 +7,5 @@ Simple|eat|less|13|False
 Simple|grow|taller|17|True
 Simple|swim|farther|19|False
 Simple|dive|deeper|23|True
+Simple|code|better|29|False
+|walk|taller|31|False
