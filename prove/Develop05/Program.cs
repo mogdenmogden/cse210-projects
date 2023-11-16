@@ -81,13 +81,13 @@ class Program
                 {
                     checkMark = " ";
                     List<string> goalData = goal.GetGoal();
-                    string localName = goal.GetGoalName();
+                    string localName = goalData[1];//goal.GetGoalName();
                     name = localName ;
-                    string localDescription = goal.GetGoalDesc();
+                    string localDescription = goalData[2];//goal.GetGoalDesc();
                     description = localDescription;
-                    int localGoalPoints = goal.GetPoints();
+                    int localGoalPoints = int.Parse(goalData[3]);//goal.GetPoints();
                     thisGoalPoints = localGoalPoints;
-                    bool thisGoalDone = goal.IsComplete();
+                    bool thisGoalDone = bool.Parse(goalData[4]);//goal.IsComplete();
                     // if (goalData[4] == "true")
                     if (thisGoalDone == true)
                     {
@@ -110,7 +110,17 @@ class Program
             case "3": //save
                 Console.Write("What is the filename for the goal file? ");
                 myFile = Console.ReadLine();
-                //SaveGoals(myFile);  //stick the point total into the file first, then the list of goals
+                using (StreamWriter outputFile = new StreamWriter(myFile))
+                {
+                    outputFile.WriteLine(pointsTotal);
+                    foreach (Goal goal in myGoals)
+                    {
+                        Goal saveOne = new Goal(goal);
+                        List<string> saveLine = saveOne.GetGoal();
+                        outputFile.WriteLine(saveLine);
+                    }
+                }
+                //stick the point total into the file first, then the list of goals
                 break;
             case "4": //load
                 Console.Write("What is the filename for the goal file? ");
@@ -132,12 +142,11 @@ class Program
                 pointsTotal = pointsTotal + recordThisOne.GetTotalPoints();
 
                 Console.WriteLine($"You have {pointsTotal} points! ");
-                foreach (string word in thisAchievedSimpleGoal)
-                {
-                    Console.WriteLine(word);
-                }
-                // RecordEvent(whichEvent,myGoals);
-                //AwardPoints(whichEvent);
+                // foreach (string word in thisAchievedSimpleGoal)
+                // {
+                //     Console.WriteLine(word);
+                // }
+                
                 break;
             default: 
                 Console.WriteLine("Good bye.");

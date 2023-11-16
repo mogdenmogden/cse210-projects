@@ -15,7 +15,17 @@ public class Goal
         SetGoalDesc(desc);
         SetPoints(points);
         PackageGoalStrings();
-        
+    }
+
+    public Goal(Goal goal) //(string goalType,string name, string desc, int points, bool done)
+    {
+        List<string> _goalList = new List<string>();
+        _goalType = goal._goalType; //0
+        SetGoalName(goal._goalName); //1
+        SetGoalDesc(goal._goalDesc); //2
+        SetPoints(goal._thisGoalPoints); //3
+        SetComplete(goal._isDone); //4
+        PackageGoalStrings();
     }
 
     private void SetGoalName(string name)
@@ -53,6 +63,11 @@ public class Goal
         return _pointTotal;
     }
 
+    private void SetComplete(bool doneStatus)
+    {
+        _isDone = doneStatus;
+    }
+
     public bool IsComplete()
     {
         
@@ -71,7 +86,7 @@ public class Goal
 
     private void PackageGoalStrings()
     {
-        Console.WriteLine("putting the name, desc,points into a list<String>");
+        //Console.WriteLine("putting the name, desc,points into a list<String>");
         List<string> goalPackage = new List<string>();
         goalPackage.Add(_goalType); //0
         goalPackage.Add(_goalName); //1
@@ -94,7 +109,18 @@ public class Goal
         PackageGoalStrings();
         AwardPoints();
     }
-
+    
+    // public void SaveGoals(string filename, List<Goal> goalsList)
+    // {
+    //     using (StreamWriter outputFile = new StreamWriter(filename))
+    //     {
+    //         outputFile.WriteLine(_pointTotal);
+    //         foreach (Goal goal in goalsList)
+    //         {
+    //             outputFile.WriteLine(goal.GetGoal());
+    //         }
+    //     }
+    // }
     
 
 }
