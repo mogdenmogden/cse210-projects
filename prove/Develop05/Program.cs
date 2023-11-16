@@ -115,9 +115,9 @@ class Program
                     outputFile.WriteLine(pointsTotal);
                     foreach (Goal goal in myGoals)
                     {
-                        Goal saveOne = new Goal(goal);
-                        List<string> saveLine = saveOne.GetGoal();
-                        outputFile.WriteLine(saveLine);
+                        Goal saveOne = new Goal(goal.GetGoalType(),goal.GetGoalName(),goal.GetGoalDesc(),goal.GetPoints(),goal.IsComplete());
+                        saveOne.SetStringRepresentation(goal);
+                        outputFile.WriteLine(saveOne.GetStringRepresentation());
                     }
                 }
                 //stick the point total into the file first, then the list of goals
