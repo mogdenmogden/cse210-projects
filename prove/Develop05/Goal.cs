@@ -83,7 +83,7 @@ public class Goal
         _pointTotal = _pointTotal + _thisGoalPoints;
     }
 
-    private int DisplayPointTotal()
+    private int DisplayPointTotal()  //unused
     {
         return _pointTotal;
     }
@@ -129,5 +129,7 @@ public class Goal
     {
         return _newline;
     }
+
+    
 
 }

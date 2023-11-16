@@ -8,12 +8,11 @@ class Program
         Console.Clear();
         string choice, name, description, checkMark = " ";;
         string[] choiceSet = {"1","2","3","4","5"};  //controls the do while on the menu
-        int pointsTotal = 0, thisGoalPoints = 0, whichEvent;
+        int pointsTotal = 0, thisGoalPoints = 0;
         string goalPick;
         string myFile;
         List<Goal> myGoals = new List<Goal>();
 
-        Console.Clear();
         Console.WriteLine("Welcome to the Goal Tracking Program.");
         Thread.Sleep(1500);
         //start the do while HERE
@@ -23,7 +22,7 @@ class Program
             // Console.Clear();
             // goalList.Add()
             // points = goal.DisplayPoints();
-            Console.WriteLine($"You have {pointsTotal} points.\n"); //goal.GetPoints()?
+            Console.WriteLine($"\nYou have {pointsTotal} points.\n"); //goal.GetPoints()?
             
             Console.WriteLine("Menu Options:");
             Console.WriteLine("\t1. Create New Goal");
@@ -46,7 +45,7 @@ class Program
                 goalPick = Console.ReadLine();
                 if (goalPick == "1")
                 {
-                    Console.WriteLine("making a simple goal");
+                    // Console.WriteLine("making a simple goal");
                     Console.Write("What is the name of your goal? ");
                     string localName = Console.ReadLine();
                     name = localName;
@@ -58,8 +57,8 @@ class Program
                     thisGoalPoints = localGoalPoints;
                     // Console.WriteLine($"{name}, {description}, {thisGoalPoints}");
                     // Console.WriteLine("hey, what happened?");
-                    Goal simpleGoal = new Goal(choice,name,description,thisGoalPoints);
-                    myGoals.Add(simpleGoal);
+                    Goal aGoal = new Goal(choice,name,description,thisGoalPoints);
+                    myGoals.Add(aGoal);
                 }
                 else if (goalPick == "2")
                 {
@@ -69,42 +68,35 @@ class Program
                 {
                     Console.WriteLine("making a checklist goal");
                 }
-                //SimpleGoal simple = new SimpleGoal();
-                //simple.MakeGoal(string name, string description); //includes setting name, desc, points
-                //simple.AddGoalToList();
-                
-                break;
+               break;
             case "2": //list goals
                 int indexNumber = 1;
                 Console.WriteLine("The goals are: ");
                 foreach (Goal goal in myGoals)
                 {
                     checkMark = " ";
-                    List<string> goalData = goal.GetGoal();
-                    string localName = goalData[1];//goal.GetGoalName();
-                    name = localName ;
-                    string localDescription = goalData[2];//goal.GetGoalDesc();
-                    description = localDescription;
-                    int localGoalPoints = int.Parse(goalData[3]);//goal.GetPoints();
-                    thisGoalPoints = localGoalPoints;
-                    bool thisGoalDone = bool.Parse(goalData[4]);//goal.IsComplete();
+                    // List<string> goalData = goal.GetGoal();
+                    // string localName = goalData[1];
+                    // name = localName ;
+                    name = goal.GetGoalName();
+                    // string localDescription = goalData[2];//
+                    // description = localDescription;
+                    description = goal.GetGoalDesc();
+                    // int localGoalPoints = int.Parse(goalData[3]);//
+                    // thisGoalPoints = localGoalPoints;
+                    thisGoalPoints = goal.GetPoints();
+                    // bool thisGoalDone = bool.Parse(goalData[4]);//
+                    bool thisGoalDone = goal.IsComplete();
                     // if (goalData[4] == "true")
                     if (thisGoalDone == true)
                     {
                         checkMark = "X";
                     };
                     
-                    // Console.WriteLine($"{indexNumber}. [{checkMark}] {goalData[1]} ({goalData[2]})");
                     Console.WriteLine($"{indexNumber}. [{checkMark}] {name} ({description}) worth {thisGoalPoints} points");
-                    // foreach (string j in goalData)
-                    // {
-                    //     Console.WriteLine($"{indexNumber}. [?] {j[1]} ({j[2]})");
-
-                    // }
-                   
                     indexNumber++;
                 }
-                Console.WriteLine();
+                // Console.WriteLine();
                 //DisplayGoals(Goal myGoal); //Console.WriteLine("The goals are: "); inside the method
                 break;
             case "3": //save
@@ -125,36 +117,49 @@ class Program
             case "4": //load
                 Console.Write("What is the filename for the goal file? ");
                 myFile = Console.ReadLine();
-                //LoadGoals(myFile);
+                string[] fileLines = System.IO.File.ReadAllLines(myFile);
+                foreach (string line in fileLines)
+                {
+                    string[] parts = line.Split("|");
+                    int partsLength  = parts.Length;
+                    if (partsLength == 1)
+                    {
+                        pointsTotal = int.Parse(parts[0]);
+                    }
+                    else
+                    {
+                        Goal loadAGoal = new Goal(parts[0],parts[1],parts[2],int.Parse(parts[3]),bool.Parse(parts[4]));
+                        myGoals.Add(loadAGoal);
+                    }
+                }
                 break;
             case "5":  //record event
-                //DisplayGoals(Goal myGoal);  //"The goals are: " inside that method
-                int iterationNumber = 1;
-                // foreach (Goal in myGoals)
-                // {
-                    
-                // }
+                int itemNumber = 1;
+                Console.WriteLine("The goals are: ");
+                foreach (Goal goal in myGoals)
+                {
+                    checkMark = " ";
+                    List<string> goalData = goal.GetGoal();
+                    string localName = goalData[1];//goal.GetGoalName();
+                    name = localName ;
+                    string localDescription = goalData[2];//goal.GetGoalDesc();
+                    description = localDescription;
+                    Console.WriteLine($"{itemNumber}. {name} ({description})");
+                    itemNumber++;
+                }
                 Console.Write("Which goal did you accomplish? ");
                 int localEvent = int.Parse(Console.ReadLine())-1;
                 Goal recordThisOne = myGoals[localEvent];
                 recordThisOne.RecordEvent();
-                List<string> thisAchievedSimpleGoal = recordThisOne.GetGoal();
+                // List<string> thisAchievedSimpleGoal = recordThisOne.GetGoal();
                 pointsTotal = pointsTotal + recordThisOne.GetTotalPoints();
 
-                Console.WriteLine($"You have {pointsTotal} points! ");
-                // foreach (string word in thisAchievedSimpleGoal)
-                // {
-                //     Console.WriteLine(word);
-                // }
-                
+                Console.WriteLine($"Congratulations! You earned {recordThisOne.GetTotalPoints()} points!\nYour new point total: {pointsTotal} points. ");
                 break;
             default: 
                 Console.WriteLine("Good bye.");
                 return;
             }
-
-            
-
         } while (choiceSet.Contains(choice));
     }
 }

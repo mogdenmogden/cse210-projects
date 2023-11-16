@@ -1,4 +1,9 @@
-21
+72
 Simple|run|faster|5|True
 Simple|jump|higher|7|True
 Simple|sleep|longer|9|True
+Simple|awaken|earlier|11|True
+Simple|eat|less|13|False
+Simple|grow|taller|17|True
+Simple|swim|farther|19|False
+Simple|dive|deeper|23|True
