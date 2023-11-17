@@ -18,6 +18,7 @@ public class Goal
         Console.Write("How many points will this goal earn? ");
         int localGoalPoints = int.Parse(Console.ReadLine());
         _thisGoalPoints = localGoalPoints;
+        _goalType = "Simple";
         _isDone = false;
     }
 
@@ -34,7 +35,7 @@ public class Goal
     public Goal(string goalType,string name, string desc, int points, bool done)
     {
         List<string> _goalPackage = new List<string>();
-        _goalType =goalType; //0
+        _goalType = goalType; //0
         SetGoalName(name); //1
         SetGoalDesc(desc); //2
         SetPoints(points); //3
@@ -103,7 +104,7 @@ public class Goal
         return _pointTotal;
     }
 
-    protected void SetComplete(bool doneStatus)
+    protected virtual void SetComplete(bool doneStatus)
     {
         _isDone = doneStatus;
     }
@@ -113,7 +114,7 @@ public class Goal
         return _isDone;
     }
 
-    protected void AwardPoints()
+    protected virtual void AwardPoints()
     {
         _pointTotal = _pointTotal + _thisGoalPoints;
     }
@@ -141,7 +142,7 @@ public class Goal
         return _goalPackage;
     }
 
-    public void RecordEvent()
+    public virtual void RecordEvent()
     {
         if (_isDone == true)
         {

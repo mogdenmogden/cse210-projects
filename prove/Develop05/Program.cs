@@ -67,6 +67,8 @@ class Program
                 else if (goalPick == "2")
                 {
                     Console.WriteLine("making an eternal goal");
+                    Eternal anEternalGoal = new Eternal();
+                    myGoals.Add(anEternalGoal);
                 }
                 else
                 {
@@ -187,7 +189,8 @@ class Program
                 else
                 {
                     doneList.Add(localEvent++);
-                    int pointAddOn = recordThisOne.GetTotalPoints();
+                    // int pointAddOn = recordThisOne.GetTotalPoints();
+                    int pointAddOn = recordThisOne.GetPoints();
                     pointsTotal = pointsTotal + pointAddOn;
                 }
                 
