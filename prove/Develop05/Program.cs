@@ -8,10 +8,12 @@ class Program
         Console.Clear();
         string choice, name, description, checkMark = " ";;
         string[] choiceSet = {"1","2","3","4","5"};  //controls the do while on the menu
-        int pointsTotal = 0, thisGoalPoints = 0;
+        int pointsTotal = 0, thisGoalPoints = 0, localEvent;
         string goalPick;
         string myFile;
         List<Goal> myGoals = new List<Goal>();
+        // string done = "[DONE]";
+        List<int> doneList = new List<int>();
 
         Console.WriteLine("Welcome to the Goal Tracking Program.");
         Thread.Sleep(1500);
@@ -118,6 +120,7 @@ class Program
                 //stick the point total into the file first, then the list of goals
                 break;
             case "4": //load
+                doneList.Clear();
                 Console.Write("What is the filename for the goal file? ");
                 myFile = Console.ReadLine();
                 string[] fileLines = System.IO.File.ReadAllLines(myFile);
@@ -139,25 +142,55 @@ class Program
             case "5":  //record event
                 int itemNumber = 1;
                 Console.WriteLine("The goals are: ");
+                doneList.Clear();
                 foreach (Goal goal in myGoals)
                 {
-                    checkMark = " ";
+                    //checkMark = " ";
                     // List<string> goalData = goal.GetGoal();
                     // string localName = goalData[1];//goal.GetGoalName();
                     // name = localName ;
                     // string localDescription = goalData[2];//goal.GetGoalDesc();
                     // description = localDescription;
+                    // done = "";
+                    if (goal.IsComplete() == true)
+                    {
+                        doneList.Add(itemNumber) ; 
+                        //done = "[DONE]";
+                    }
                     string lineOut = goal.ListGoals("short");
                     Console.WriteLine($"{itemNumber}. {lineOut}");
                     itemNumber++;
                 }
                 Console.Write("Which goal did you accomplish? ");
-                int localEvent = int.Parse(Console.ReadLine())-1;
+                localEvent = int.Parse(Console.ReadLine())-1;
+                // do {
+                //     Console.WriteLine("That goal is already complete. Please select another.");
+                //     foreach (int number in doneList)
+                //     {
+                //         Console.Write(number.ToString()+" ");
+                //     }
+
+                //     Console.Write("\nWhich goal did you accomplish? ");
+                //     int innerLocalEvent = int.Parse(Console.ReadLine())-1;
+                //     localEvent = innerLocalEvent;
+                //     } while (doneList.Contains(localEvent) == false);
+                
+                
                 Goal recordThisOne = myGoals[localEvent];
                 recordThisOne.RecordEvent();
                 // List<string> thisAchievedSimpleGoal = recordThisOne.GetGoal();
-                pointsTotal = pointsTotal + recordThisOne.GetTotalPoints();
-
+                localEvent++;
+                if (doneList.Contains(localEvent))
+                {
+                    break;
+                }
+                else
+                {
+                    doneList.Add(localEvent++);
+                    int pointAddOn = recordThisOne.GetTotalPoints();
+                    pointsTotal = pointsTotal + pointAddOn;
+                }
+                
                 // Console.WriteLine($"Congratulations! You earned {recordThisOne.GetTotalPoints()} points!\nYour new point total: {pointsTotal} points. ");
                 break;
             default: 

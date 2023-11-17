@@ -56,7 +56,8 @@ public class Goal
         }
         else
         {
-            string lineOut = $"{_goalName} ({_goalDesc})";
+            string done = (_isDone == true) ? "[DONE]" : "";
+            string lineOut = $"{_goalName} ({_goalDesc})  {done} ";
             return lineOut;
         }
         
@@ -153,7 +154,7 @@ public class Goal
             //_pointTotal = _pointTotal + _thisGoalPoints;
             PackageGoalStrings();
             AwardPoints();
-            Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points!\nYour new point total: {_pointTotal} points. ");
+            Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! ");
         }
     }
     
