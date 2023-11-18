@@ -70,9 +70,15 @@ class Program
                     Eternal anEternalGoal = new Eternal();
                     myGoals.Add(anEternalGoal);
                 }
-                else
+                else if (goalPick == "3")
                 {
                     Console.WriteLine("making a checklist goal");
+                    Checklist aChecklistGoal = new Checklist();
+                    myGoals.Add(aChecklistGoal);
+                }
+                else 
+                {
+                    Console.WriteLine("It seems that a wrong value was selected. Please try again.");
                 }
                break;
             case "2": //list goals
@@ -191,7 +197,7 @@ class Program
                     doneList.Add(localEvent++);
                     // int pointAddOn = recordThisOne.GetTotalPoints();
                     int pointAddOn = recordThisOne.GetPoints();
-                    pointsTotal = pointsTotal + pointAddOn;
+                    pointsTotal += pointAddOn;
                 }
                 
                 // Console.WriteLine($"Congratulations! You earned {recordThisOne.GetTotalPoints()} points!\nYour new point total: {pointsTotal} points. ");

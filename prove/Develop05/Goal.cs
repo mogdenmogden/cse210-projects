@@ -19,7 +19,7 @@ public class Goal
         int localGoalPoints = int.Parse(Console.ReadLine());
         _thisGoalPoints = localGoalPoints;
         _goalType = "Simple";
-        _isDone = false;
+        SetComplete(false);
     }
 
     public Goal(string goalType,string name, string desc, int points)
@@ -43,7 +43,7 @@ public class Goal
         PackageGoalStrings();
     }
 
-    public string ListGoals(string longShort)  //add something to indicate done and then regulate record event by that thing
+    public virtual string ListGoals(string longShort)  //add something to indicate done and then regulate record event by that thing
     {
         _doneMark = " ";
         if (_isDone == true)
@@ -116,7 +116,7 @@ public class Goal
 
     protected virtual void AwardPoints()
     {
-        _pointTotal = _pointTotal + _thisGoalPoints;
+        _pointTotal += _thisGoalPoints;
     }
 
     private int DisplayPointTotal()  //unused
@@ -124,7 +124,7 @@ public class Goal
         return _pointTotal;
     }
 
-    protected void PackageGoalStrings()
+    protected virtual void PackageGoalStrings()
     {
         //Console.WriteLine("putting the name, desc,points into a list<String>");
         List<string> goalPackage = new List<string>();
@@ -147,11 +147,10 @@ public class Goal
         if (_isDone == true)
         {
             Console.WriteLine("You have already completed this goal. ");
-            
         }
         else
         {
-            _isDone = true;
+            SetComplete(true);
             //_pointTotal = _pointTotal + _thisGoalPoints;
             PackageGoalStrings();
             AwardPoints();
@@ -159,7 +158,7 @@ public class Goal
         }
     }
     
-    public void SetStringRepresentation(Goal goal)
+    public virtual void SetStringRepresentation(Goal goal)
     {
         Goal _lineGoal = new Goal(goal._goalType,goal._goalName,goal._goalDesc,goal._thisGoalPoints,goal._isDone);
         _newline = "";
@@ -167,7 +166,7 @@ public class Goal
         _newline = _newline+_lineGoal._goalName+"|";
         _newline = _newline+_lineGoal._goalDesc+"|";
         _newline = _newline+_lineGoal._thisGoalPoints+"|";
-        _newline = _newline+_lineGoal._isDone;
+        _newline += _lineGoal._isDone;
     }
     
     public string GetStringRepresentation()
