@@ -135,18 +135,23 @@ public class Checklist : Goal
     }
         //                           Checklist(string goalType,string name, string desc
         // , int points,bool done,int addEvent,int repsRequired, int bonus) : base(goalType,name,desc,points,done)
-    public void SetStringRepresentation(Checklist checklist)
+    // public void SetStringRepresentation(Checklist checklist)
+    // {
+    //     Checklist _lineGoal = new Checklist(checklist._goalType,checklist._goalName,checklist._goalDesc
+    //     ,checklist._thisGoalPoints,checklist._isDone,checklist._repetitionsDone,checklist._repetitionsRequired
+    //     ,checklist._bonusPoints); //: base(goalType,name,desc,points,done);
+    //     _newline = "";
+    //     _newline = _lineGoal._goalType+"|";
+    //     _newline = _newline+_lineGoal._goalName+"|";
+    //     _newline = _newline+_lineGoal._goalDesc+"|";
+    //     _newline = _newline+_lineGoal._thisGoalPoints+"|";
+    //     _newline += _lineGoal._isDone;
+    // }
+
+    public override string GetStringRepresentation()
     {
-        Checklist _lineGoal = new Checklist(checklist._goalType,checklist._goalName,checklist._goalDesc
-        ,checklist._thisGoalPoints,checklist._isDone,checklist._repetitionsDone,checklist._repetitionsRequired
-        ,checklist._bonusPoints); //: base(goalType,name,desc,points,done);
-        _newline = "";
-        _newline = _lineGoal._goalType+"|";
-        _newline = _newline+_lineGoal._goalName+"|";
-        _newline = _newline+_lineGoal._goalDesc+"|";
-        _newline = _newline+_lineGoal._thisGoalPoints+"|";
-        _newline += _lineGoal._isDone;
-    }
+        return $"{_goalType}|{_goalName}|{_goalDesc}|{_thisGoalPoints}|{_isDone}|{_repetitionsDone}|{_repetitionsRequired}|{_bonusPoints}";
+    }    
         
 
     private void SetRepetitionsDone(int addEvent)

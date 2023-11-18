@@ -161,20 +161,20 @@ public abstract class Goal
         }
     }
     
-    public virtual void SetStringRepresentation(Goal goal)
-    {
-        Goal _lineGoal = new Goal(goal._goalType,goal._goalName,goal._goalDesc,goal._thisGoalPoints,goal._isDone);
-        _newline = "";
-        _newline = _lineGoal._goalType+"|";
-        _newline = _newline+_lineGoal._goalName+"|";
-        _newline = _newline+_lineGoal._goalDesc+"|";
-        _newline = _newline+_lineGoal._thisGoalPoints+"|";
-        _newline += _lineGoal._isDone;
-    }
+    // public virtual void SetStringRepresentation(Goal goal)
+    // {
+    //     // Goal _lineGoal = new Goal(goal._goalType,goal._goalName,goal._goalDesc,goal._thisGoalPoints,goal._isDone);
+    //     _newline = $"{_goalType}|{_goalName}|{_goalDesc}|{_thisGoalPoints}|{_isDone}";
+    //     // _newline = _lineGoal._goalType+"|";
+    //     // _newline = _newline+_lineGoal._goalName+"|";
+    //     // _newline = _newline+_lineGoal._goalDesc+"|";
+    //     // _newline = _newline+_lineGoal._thisGoalPoints+"|";
+    //     // _newline += _lineGoal._isDone;
+    // }
     
-    public string GetStringRepresentation()
+    public virtual string GetStringRepresentation()
     {
-        return _newline;
+        return $"{_goalType}|{_goalName}|{_goalDesc}|{_thisGoalPoints}|{_isDone}";
     }
 
     

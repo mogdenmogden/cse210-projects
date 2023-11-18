@@ -121,7 +121,7 @@ class Program
                     foreach (Goal goal in myGoals)
                     {
                         Goal saveOne = new Goal(goal.GetGoalType(),goal.GetGoalName(),goal.GetGoalDesc(),goal.GetPoints(),goal.IsComplete());
-                        saveOne.SetStringRepresentation(goal);
+                        // saveOne.SetStringRepresentation(goal);
                         outputFile.WriteLine(saveOne.GetStringRepresentation());
                     }
                 }
