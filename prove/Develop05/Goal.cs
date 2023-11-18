@@ -1,6 +1,7 @@
-public class Goal
+public abstract class Goal
 {
-    protected string _goalName, _goalDesc, _doneMark = "X", _fileName,_goalType;
+    protected string _goalName, _goalDesc, _doneMark = "X", _fileName;
+    public string _goalType;
     protected int _thisGoalPoints = 0, _pointTotal = 0;
     protected List<string> _goalPackage;
     protected string _newline;
@@ -103,6 +104,8 @@ public class Goal
     {
         return _pointTotal;
     }
+
+    public abstract int GetBonus();
 
     protected virtual void SetComplete(bool doneStatus)
     {

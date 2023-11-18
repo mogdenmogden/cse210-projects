@@ -2,25 +2,32 @@ using System.Runtime.CompilerServices;
 
 public class Checklist : Goal
 {
-    private string _goalName, _goalDesc,,_goalType;
-    private int _thisGoalPoints = 0, _pointTotal = 0;
+    // private string _goalName, _goalDesc,,_goalType;
+    // private int _thisGoalPoints = 0, _pointTotal = 0;
     private int _repetitionsDone, _repetitionsRequired, _bonusPoints;
     
     public Checklist() : base()
     {
-        SetRepetitionsDone(0);
+        _goalType = "Checklist";
+        // // Console.Write("What is the name of your goal? ");
+        // // string localName = Console.ReadLine();
+        // _goalName = GetGoalName(); //localName;
+        // // Console.Write("Write a short description for this goal: ");
+        // // string localDescription = Console.ReadLine();
+        // _goalDesc = GetGoalDesc(); //localDescription;
+        // // Console.Write("How many points will this goal earn? ");
+        // // int localGoalPoints = int.Parse(Console.ReadLine());
+        // _thisGoalPoints = GetPoints(); //localGoalPoints;
+        // _isDone = IsComplete();
         Console.Write("How many repetitions are needed to finish it? ");
         int localCheckReps = int.Parse(Console.ReadLine());
         Console.Write("How many bonus points will be awarded when it is done? ");
         int localCheckBonus = int.Parse(Console.ReadLine());
         _repetitionsRequired = localCheckReps;
         _bonusPoints = localCheckBonus;
-        _repetitionsDone = 0;
-        _goalType = "Checklist";
-        _goalName = GetGoalName();
-        _goalDesc = GetGoalDesc();
-        _thisGoalPoints = GetPoints();
-        _pointTotal = GetTotalPoints();
+        SetRepetitionsDone(0);
+        //_repetitionsDone = 0;
+        
     }
 
     public Checklist(string goalType,string name, string desc, int points,bool done,int addEvent,int repsRequired, int bonus) : base(goalType,name,desc,points,done)
@@ -64,7 +71,7 @@ public class Checklist : Goal
         {
             Console.WriteLine("You have already completed this goal. ");
         }
-        else if ((_repetitionsDone < _repetitionsRequired) && (_isDone = false))
+        else if ((_repetitionsDone < _repetitionsRequired) & (_isDone == false))
         {
             _repetitionsDone++;
             
@@ -83,13 +90,15 @@ public class Checklist : Goal
             }
             
         }
-        else if ((_repetitionsDone == _repetitionsRequired) && (_isDone = false))
+        else if ((_repetitionsDone == _repetitionsRequired) & (_isDone == false))
         {
             SetComplete(true);
+            Console.WriteLine("RecordEvent else if set _isDone to true bc done == reqd");
         }
-        else if ((_repetitionsDone < _repetitionsRequired) && (_isDone = true))
+        else if ((_repetitionsDone < _repetitionsRequired) & (_isDone == true))
         {
             SetComplete(false);
+            Console.WriteLine("RecordEvent else if set _isDone to false bc done < reqd");
         }
         else
         {
@@ -126,11 +135,11 @@ public class Checklist : Goal
     }
         //                           Checklist(string goalType,string name, string desc
         // , int points,bool done,int addEvent,int repsRequired, int bonus) : base(goalType,name,desc,points,done)
-    public override void SetStringRepresentation(Goal checklist)
+    public void SetStringRepresentation(Checklist checklist)
     {
         Checklist _lineGoal = new Checklist(checklist._goalType,checklist._goalName,checklist._goalDesc
         ,checklist._thisGoalPoints,checklist._isDone,checklist._repetitionsDone,checklist._repetitionsRequired
-        ,checklist._bonusPoints) : base(goalType,name,desc,points,done);
+        ,checklist._bonusPoints); //: base(goalType,name,desc,points,done);
         _newline = "";
         _newline = _lineGoal._goalType+"|";
         _newline = _newline+_lineGoal._goalName+"|";
@@ -145,7 +154,7 @@ public class Checklist : Goal
         _repetitionsDone += addEvent;
     }
 
-    private int GetRepetitionsDone()
+    public int GetRepetitionsDone()
     {
         return _repetitionsDone;
     }
@@ -155,7 +164,7 @@ public class Checklist : Goal
         _repetitionsRequired += repsRequired;
     }
 
-    private int GetRepetitionsRequired()
+    public int GetRepetitionsRequired()
     {
         return _repetitionsRequired;
     }
@@ -165,7 +174,7 @@ public class Checklist : Goal
         _bonusPoints = bonus;
     }
 
-    private int GetBonus()
+    public override int GetBonus()
     {
         return _bonusPoints;
     }

@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 public class Eternal : Goal
 {
@@ -47,6 +48,11 @@ public class Eternal : Goal
             AwardPoints();
             Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! ");
         }
+    }
+
+    public override int GetBonus()
+    {
+        return 0;
     }
 
 
