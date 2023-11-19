@@ -5,15 +5,6 @@ public class Eternal : Goal
 {
     public Eternal() : base()
     {
-        // Console.Write("What is the name of your goal? ");
-        // string localName = Console.ReadLine();
-        // _goalName = localName;
-        // Console.Write("Write a short description for this goal: ");
-        // string localDescription = Console.ReadLine();
-        // _goalDesc = localDescription;
-        // Console.Write("How many points will this goal earn? ");
-        // int localGoalPoints = int.Parse(Console.ReadLine());
-        // _thisGoalPoints = localGoalPoints;
         _goalType = "Perpetual";
         _isDone = false;
     }
@@ -47,6 +38,23 @@ public class Eternal : Goal
             PackageGoalStrings();
             AwardPoints();
             Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! ");
+            AsciiText congratsEternal = new AsciiText($"Congratulations! You earned {_thisGoalPoints} points! ");
+            congratsEternal.PrintAsciiStuff();
+            Console.WriteLine(@"
+ __    __                                 __   __                            __ 
+|  \  /  \                               |  \ |  \                          |  \
+| ▓▓ /  ▓▓ ______   ______   ______       \▓▓_| ▓▓_        __    __  ______ | ▓▓
+| ▓▓/  ▓▓ /      \ /      \ /      \     |  \   ▓▓ \      |  \  |  \/      \| ▓▓
+| ▓▓  ▓▓ |  ▓▓▓▓▓▓\  ▓▓▓▓▓▓\  ▓▓▓▓▓▓\    | ▓▓\▓▓▓▓▓▓      | ▓▓  | ▓▓  ▓▓▓▓▓▓\ ▓▓
+| ▓▓▓▓▓\ | ▓▓    ▓▓ ▓▓    ▓▓ ▓▓  | ▓▓    | ▓▓ | ▓▓ __     | ▓▓  | ▓▓ ▓▓  | ▓▓\▓▓
+| ▓▓ \▓▓\| ▓▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓▓ ▓▓__/ ▓▓    | ▓▓ | ▓▓|  \    | ▓▓__/ ▓▓ ▓▓__/ ▓▓__ 
+| ▓▓  \▓▓\\▓▓     \\▓▓     \ ▓▓    ▓▓    | ▓▓  \▓▓  ▓▓     \▓▓    ▓▓ ▓▓    ▓▓  \
+ \▓▓   \▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓ ▓▓▓▓▓▓▓      \▓▓   \▓▓▓▓       \▓▓▓▓▓▓| ▓▓▓▓▓▓▓ \▓▓
+                           | ▓▓                                    | ▓▓         
+                           | ▓▓                                    | ▓▓         
+                            \▓▓                                     \▓▓         
+
+            ");
         }
     }
 

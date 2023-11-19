@@ -1,0 +1,3 @@
+0
+Simple|jump|higher|3|False
+Perpetual|sleep|every night|7|False

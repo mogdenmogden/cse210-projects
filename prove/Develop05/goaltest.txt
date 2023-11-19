@@ -1,0 +1,5 @@
+1787
+Simple|finish|this program|100|True
+Perpetual|sleep|every day|4|False
+Checklist|do assignments|for this class|50|True
+Simple|homework|turn it in|25|True

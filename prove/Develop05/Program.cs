@@ -4,7 +4,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        // Console.WriteLine("Hello Develop05 World!");
         Console.Clear();
         string choice;
         string[] choiceSet = {"1","2","3","4","5"};  //controls the do while on the menu
@@ -12,19 +11,16 @@ class Program
         string goalPick;
         string myFile;
         List<Goal> myGoals = new List<Goal>();
-        // string done = "[DONE]";
         List<int> doneList = new List<int>();
 
         Console.WriteLine("Welcome to the Goal Tracking Program.");
-        Thread.Sleep(1500);
+        AsciiText welcome = new AsciiText("Welcome to the Goal Tracking Program!");
+        welcome.PrintAsciiStuff();
+        // Thread.Sleep(1500);
         //start the do while HERE
         do
         {
-            //update point total at the end of the process, before coming to this spot again
-            // Console.Clear();
-            // goalList.Add()
-            // points = goal.DisplayPoints();
-            Console.WriteLine($"\nYou have {pointsTotal} points.\n"); //goal.GetPoints()?
+            Console.WriteLine($"\nYou have {pointsTotal} points.\n"); 
             
             Console.WriteLine("Menu Options:");
             Console.WriteLine("\t1. Create New Goal");
@@ -47,32 +43,22 @@ class Program
                 goalPick = Console.ReadLine();
                 if (goalPick == "1")
                 {
-                    //consider putting the goal making stuff in a goal class 
-                    // // Console.WriteLine("making a simple goal");
-                    // Console.Write("What is the name of your goal? ");
-                    // string localName = Console.ReadLine();
-                    // name = localName;
-                    // Console.Write("Write a short description for this goal: ");
-                    // string localDescription = Console.ReadLine();
-                    // description = localDescription;
-                    // Console.Write("How many points will this goal earn? ");
-                    // int localGoalPoints = int.Parse(Console.ReadLine());
-                    // thisGoalPoints = localGoalPoints;
-                    // // Console.WriteLine($"{name}, {description}, {thisGoalPoints}");
-                    // // Console.WriteLine("hey, what happened?");
-                    // Goal aGoal = new Goal(choice,name,description,thisGoalPoints);
+                    AsciiText simple = new AsciiText("lets make a simple goal");
+                    simple.PrintAsciiStuff();  
                     Goal aGoal = new Goal();
                     myGoals.Add(aGoal);
                 }
                 else if (goalPick == "2")
                 {
-                    Console.WriteLine("making an eternal goal");
+                    AsciiText eternal = new AsciiText("lets make an eternal goal");
+                    eternal.PrintAsciiStuff();  
                     Eternal anEternalGoal = new Eternal();
                     myGoals.Add(anEternalGoal);
                 }
                 else if (goalPick == "3")
                 {
-                    Console.WriteLine("making a checklist goal");
+                    AsciiText checklist = new AsciiText("lets make a checklist goal");
+                    checklist.PrintAsciiStuff();  
                     Checklist aChecklistGoal = new Checklist();
                     myGoals.Add(aChecklistGoal);
                 }
@@ -83,34 +69,15 @@ class Program
                break;
             case "2": //list goals
                 int indexNumber = 1;
+                AsciiText yourGoals = new AsciiText("your goals:");
+                yourGoals.PrintAsciiStuff();  
                 Console.WriteLine("The goals are: ");
                 foreach (Goal goal in myGoals)
                 {
-                    // checkMark = " ";
-                    // // List<string> goalData = goal.GetGoal();
-                    // // string localName = goalData[1];
-                    // // name = localName ;
-                    // name = goal.GetGoalName();
-                    // // string localDescription = goalData[2];//
-                    // // description = localDescription;
-                    // description = goal.GetGoalDesc();
-                    // // int localGoalPoints = int.Parse(goalData[3]);//
-                    // // thisGoalPoints = localGoalPoints;
-                    // thisGoalPoints = goal.GetPoints();
-                    // // bool thisGoalDone = bool.Parse(goalData[4]);//
-                    // bool thisGoalDone = goal.IsComplete();
-                    // // if (goalData[4] == "true")
-                    // if (thisGoalDone == true)
-                    // {
-                    //     checkMark = "X";
-                    // };
-                    // Console.WriteLine($"{indexNumber}. [{checkMark}] {name} ({description}) worth {thisGoalPoints} points");
                     string lineOut = goal.ListGoals("long");
                     Console.WriteLine($"{indexNumber}. {lineOut}");
                     indexNumber++;
                 }
-                // Console.WriteLine();
-                //DisplayGoals(Goal myGoal); //Console.WriteLine("The goals are: "); inside the method
                 break;
             case "3": //save
                 Console.Write("What is the filename for the goal file? ");
@@ -121,11 +88,9 @@ class Program
                     foreach (Goal goal in myGoals)
                     {
                         Goal saveOne = new Goal(goal.GetGoalType(),goal.GetGoalName(),goal.GetGoalDesc(),goal.GetPoints(),goal.IsComplete());
-                        // saveOne.SetStringRepresentation(goal);
                         outputFile.WriteLine(saveOne.GetStringRepresentation());
                     }
                 }
-                //stick the point total into the file first, then the list of goals
                 break;
             case "4": //load
                 doneList.Clear();
@@ -153,13 +118,6 @@ class Program
                 doneList.Clear();
                 foreach (Goal goal in myGoals)
                 {
-                    //checkMark = " ";
-                    // List<string> goalData = goal.GetGoal();
-                    // string localName = goalData[1];//goal.GetGoalName();
-                    // name = localName ;
-                    // string localDescription = goalData[2];//goal.GetGoalDesc();
-                    // description = localDescription;
-                    // done = "";
                     if (goal.IsComplete() == true)
                     {
                         doneList.Add(itemNumber) ; 
@@ -171,25 +129,9 @@ class Program
                 }
                 Console.Write("Which goal did you accomplish? ");
                 recordEventChoice = int.Parse(Console.ReadLine())-1;
-                // do {
-                //     Console.WriteLine("That goal is already complete. Please select another.");
-                //     foreach (int number in doneList)
-                //     {
-                //         Console.Write(number.ToString()+" ");
-                //     }
-
-                //     Console.Write("\nWhich goal did you accomplish? ");
-                //     int innerrecordEventChoice = int.Parse(Console.ReadLine())-1;
-                //     recordEventChoice = innerrecordEventChoice;
-                //     } while (doneList.Contains(recordEventChoice) == false);
                 string thisType = myGoals[recordEventChoice].GetGoalType();
-                //myGoals[recordEventChoice].GetGoalType();
                 if (thisType == "Checklist")
                 {
-                    // Goal recordThisChecklist = new Checklist();
-                    //recordThisChecklist = myGoals[recordEventChoice];
-                    //recordThisChecklist.RecordEvent();
-
                     if (doneList.Contains(recordEventChoice+1))
                     {
                         Console.WriteLine("That's already done.");
@@ -211,7 +153,6 @@ class Program
                 }
                 else
                 {
-                    // Goal recordThisOne = myGoals[recordEventChoice];
                     if (doneList.Contains(recordEventChoice+1))
                     {
                         Console.WriteLine("That's already done.");
@@ -225,27 +166,44 @@ class Program
                         doneList.Add(recordEventChoice++);
                     }
                 }
-                
-                // List<string> thisAchievedSimpleGoal = recordThisOne.GetGoal();
-                // recordEventChoice++;
-                // if (doneList.Contains(recordEventChoice))
-                // {
-                //     break;
-                // }
-                // else
-                // {
-                //     doneList.Add(recordEventChoice++);
-                //     // int pointAddOn = recordThisOne.GetTotalPoints();
-                //     int pointAddOn = recordThisOne.GetPoints();
-                //     pointsTotal += pointAddOn;
-                // }
-                
-                // Console.WriteLine($"Congratulations! You earned {recordThisOne.GetTotalPoints()} points!\nYour new point total: {pointsTotal} points. ");
                 break;
             default: 
-                Console.WriteLine("Good bye.");
+                //Console.WriteLine("Good bye.");
+//                 Console.WriteLine(@"
+//   __    ___   ___   ___       ___   _     ____
+//  / /`_ / / \ / / \ | | \     | |_) \ \_/ | |_ 
+//  \_\_/ \_\_/ \_\_/ |_|_/     |_|_)  |_|  |_|__
+
+//                 ");
+                
+                AsciiText textLine = new AsciiText("Good bye!");
+                textLine.PrintAsciiStuff();
+                // List<List<string>> printThis = textLine.GetOutput();
+                
+                // foreach (List<string> i in printThis)
+                // {
+                //     var bigCharacterT = i[0];
+                //     Console.Write(bigCharacterT);
+                // }
+                //     Console.WriteLine();
+                // foreach (List<string> i in printThis)
+                // {
+                //     var bigCharacterM = i[1];
+                //     Console.Write(bigCharacterM);
+                // }
+                //     Console.WriteLine();
+                // foreach (List<string> i in printThis)
+                // {
+                //     var bigCharacterB = i[2];
+                //     Console.Write(bigCharacterB);
+                // }
+                //     Console.WriteLine();
+
+                
+                Console.WriteLine("ASCII art fonts courtesy of https://texteditor.com/multiline-text-art/");
+                Console.WriteLine();
                 return;
             }
         } while (choiceSet.Contains(choice));
-    }
+    } 
 }

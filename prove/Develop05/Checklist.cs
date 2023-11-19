@@ -2,32 +2,18 @@ using System.Runtime.CompilerServices;
 
 public class Checklist : Goal
 {
-    // private string _goalName, _goalDesc,,_goalType;
-    // private int _thisGoalPoints = 0, _pointTotal = 0;
     private int _repetitionsDone, _repetitionsRequired, _bonusPoints;
     
     public Checklist() : base()
     {
         _goalType = "Checklist";
-        // // Console.Write("What is the name of your goal? ");
-        // // string localName = Console.ReadLine();
-        // _goalName = GetGoalName(); //localName;
-        // // Console.Write("Write a short description for this goal: ");
-        // // string localDescription = Console.ReadLine();
-        // _goalDesc = GetGoalDesc(); //localDescription;
-        // // Console.Write("How many points will this goal earn? ");
-        // // int localGoalPoints = int.Parse(Console.ReadLine());
-        // _thisGoalPoints = GetPoints(); //localGoalPoints;
-        // _isDone = IsComplete();
         Console.Write("How many repetitions are needed to finish it? ");
         int localCheckReps = int.Parse(Console.ReadLine());
         Console.Write("How many bonus points will be awarded when it is done? ");
         int localCheckBonus = int.Parse(Console.ReadLine());
         _repetitionsRequired = localCheckReps;
         _bonusPoints = localCheckBonus;
-        SetRepetitionsDone(0);
-        //_repetitionsDone = 0;
-        
+        SetRepetitionsDone(0);        
     }
 
     public Checklist(string goalType,string name, string desc, int points,bool done,int addEvent,int repsRequired, int bonus) : base(goalType,name,desc,points,done)
@@ -44,7 +30,7 @@ public class Checklist : Goal
              
     }
 
-    public override string ListGoals(string longShort)  //add something to indicate done and then regulate record event by that thing
+    public override string ListGoals(string longShort)  
     {
         _doneMark = " ";
         if (_isDone == true)
@@ -79,6 +65,8 @@ public class Checklist : Goal
             {
                 AwardPoints();
                 PackageGoalStrings();
+                AsciiText congratsEvent = new AsciiText($"Congratulations! You earned {_thisGoalPoints} points!");
+                congratsEvent.PrintAsciiStuff();
                 Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! {_repetitionsDone}/{_repetitionsRequired} events complete.");
             }
             else if (_repetitionsDone == _repetitionsRequired)
@@ -86,6 +74,8 @@ public class Checklist : Goal
                 SetComplete(true);
                 AwardPoints(); 
                 PackageGoalStrings(); 
+                AsciiText congratsChecklist = new AsciiText($"Yes! You earned {_thisGoalPoints} and {_bonusPoints} bonus!");
+                congratsChecklist.PrintAsciiStuff();
                 Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points plus the {_bonusPoints} point bonus award!  {_repetitionsDone}/{_repetitionsRequired} events complete.");
             }
             
@@ -133,21 +123,7 @@ public class Checklist : Goal
         _goalPackage = goalPackage;
         
     }
-        //                           Checklist(string goalType,string name, string desc
-        // , int points,bool done,int addEvent,int repsRequired, int bonus) : base(goalType,name,desc,points,done)
-    // public void SetStringRepresentation(Checklist checklist)
-    // {
-    //     Checklist _lineGoal = new Checklist(checklist._goalType,checklist._goalName,checklist._goalDesc
-    //     ,checklist._thisGoalPoints,checklist._isDone,checklist._repetitionsDone,checklist._repetitionsRequired
-    //     ,checklist._bonusPoints); //: base(goalType,name,desc,points,done);
-    //     _newline = "";
-    //     _newline = _lineGoal._goalType+"|";
-    //     _newline = _newline+_lineGoal._goalName+"|";
-    //     _newline = _newline+_lineGoal._goalDesc+"|";
-    //     _newline = _newline+_lineGoal._thisGoalPoints+"|";
-    //     _newline += _lineGoal._isDone;
-    // }
-
+    
     public override string GetStringRepresentation()
     {
         return $"{_goalType}|{_goalName}|{_goalDesc}|{_thisGoalPoints}|{_isDone}|{_repetitionsDone}|{_repetitionsRequired}|{_bonusPoints}";
