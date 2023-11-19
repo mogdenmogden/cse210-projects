@@ -16,8 +16,7 @@ class Program
         Console.WriteLine("Welcome to the Goal Tracking Program.");
         AsciiText welcome = new AsciiText("Welcome to the Goal Tracking Program!");
         welcome.PrintAsciiStuff();
-        // Thread.Sleep(1500);
-        //start the do while HERE
+
         do
         {
             Console.WriteLine($"\nYou have {pointsTotal} points.\n"); 
@@ -121,7 +120,6 @@ class Program
                     if (goal.IsComplete() == true)
                     {
                         doneList.Add(itemNumber) ; 
-                        //done = "[DONE]";
                     }
                     string lineOut = goal.ListGoals("short");
                     Console.WriteLine($"{itemNumber}. {lineOut}");
@@ -139,7 +137,6 @@ class Program
                     }
                     else
                     {
-                        
                         myGoals[recordEventChoice].RecordEvent();
                         int pointAddOn = myGoals[recordEventChoice].GetPoints() + myGoals[recordEventChoice].GetBonus();
                         pointsTotal += pointAddOn;
@@ -148,7 +145,6 @@ class Program
                         {
                             doneList.Add(recordEventChoice+1);
                         }
-
                     }
                 }
                 else
@@ -168,37 +164,9 @@ class Program
                 }
                 break;
             default: 
-                //Console.WriteLine("Good bye.");
-//                 Console.WriteLine(@"
-//   __    ___   ___   ___       ___   _     ____
-//  / /`_ / / \ / / \ | | \     | |_) \ \_/ | |_ 
-//  \_\_/ \_\_/ \_\_/ |_|_/     |_|_)  |_|  |_|__
-
-//                 ");
                 
                 AsciiText textLine = new AsciiText("Good bye!");
                 textLine.PrintAsciiStuff();
-                // List<List<string>> printThis = textLine.GetOutput();
-                
-                // foreach (List<string> i in printThis)
-                // {
-                //     var bigCharacterT = i[0];
-                //     Console.Write(bigCharacterT);
-                // }
-                //     Console.WriteLine();
-                // foreach (List<string> i in printThis)
-                // {
-                //     var bigCharacterM = i[1];
-                //     Console.Write(bigCharacterM);
-                // }
-                //     Console.WriteLine();
-                // foreach (List<string> i in printThis)
-                // {
-                //     var bigCharacterB = i[2];
-                //     Console.Write(bigCharacterB);
-                // }
-                //     Console.WriteLine();
-
                 
                 Console.WriteLine("ASCII art fonts courtesy of https://texteditor.com/multiline-text-art/");
                 Console.WriteLine();

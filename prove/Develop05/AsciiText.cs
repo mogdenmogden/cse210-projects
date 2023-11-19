@@ -2,12 +2,11 @@ using System.Text;
 
 public class AsciiText
 {
-    private string _inputString, _upperCaseString; 
+    private string _upperCaseString; 
     private List<List<string>> _outputString;
     private Dictionary<string, List<string>> _alphaNumeric;
     private List<List<string>> _intermediateList = new List<List<string>>();
-    private char[] _characterArray;
-
+    
     public List<List<string>> MakeAsciiCharacters(string inputString)
     {
         _upperCaseString = inputString.ToUpper();

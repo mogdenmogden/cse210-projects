@@ -6,7 +6,6 @@ public class Goal
     protected List<string> _goalPackage;
     protected string _newline;
     protected bool _isDone = false;
-    //protected List<string> _goalPackage;
 
     public Goal()
     {
@@ -44,7 +43,7 @@ public class Goal
         PackageGoalStrings();
     }
 
-    public virtual string ListGoals(string longShort)  //add something to indicate done and then regulate record event by that thing
+    public virtual string ListGoals(string longShort)  
     {
         _doneMark = " ";
         if (_isDone == true)
@@ -100,7 +99,7 @@ public class Goal
         return _thisGoalPoints;
     }
 
-    public int GetTotalPoints()
+    private int GetTotalPoints()
     {
         return _pointTotal;
     }
@@ -142,7 +141,7 @@ public class Goal
         
     }
     
-    public List<string> GetGoal()
+    private List<string> GetGoal()
     {
         return _goalPackage;
     }
@@ -156,7 +155,6 @@ public class Goal
         else
         {
             SetComplete(true);
-            //_pointTotal = _pointTotal + _thisGoalPoints;
             PackageGoalStrings();
             AwardPoints();
             Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! ");

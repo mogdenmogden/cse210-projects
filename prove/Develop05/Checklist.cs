@@ -135,7 +135,7 @@ public class Checklist : Goal
         _repetitionsDone += addEvent;
     }
 
-    public int GetRepetitionsDone()
+    private int GetRepetitionsDone()
     {
         return _repetitionsDone;
     }
@@ -145,7 +145,7 @@ public class Checklist : Goal
         _repetitionsRequired += repsRequired;
     }
 
-    public int GetRepetitionsRequired()
+    private int GetRepetitionsRequired()
     {
         return _repetitionsRequired;
     }

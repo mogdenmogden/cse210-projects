@@ -33,8 +33,6 @@ public class Eternal : Goal
         }
         else
         {
-            // _isDone = true;
-            //_pointTotal = _pointTotal + _thisGoalPoints;
             PackageGoalStrings();
             AwardPoints();
             Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! ");
