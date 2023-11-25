@@ -127,41 +127,54 @@ class Program
                 }
                 Console.Write("Which goal did you accomplish? ");
                 recordEventChoice = int.Parse(Console.ReadLine())-1;
-                string thisType = myGoals[recordEventChoice].GetGoalType();
-                if (thisType == "Checklist")
+                int pointAddOn = 0;
+                bool itsDone = myGoals[recordEventChoice].IsComplete();
+                if (itsDone == true)
                 {
-                    if (doneList.Contains(recordEventChoice+1))
-                    {
-                        Console.WriteLine("That's already done.");
-                        break;
-                    }
-                    else
-                    {
-                        myGoals[recordEventChoice].RecordEvent();
-                        int pointAddOn = myGoals[recordEventChoice].GetPoints() + myGoals[recordEventChoice].GetBonus();
-                        pointsTotal += pointAddOn;
-                        bool itsDone = myGoals[recordEventChoice].IsComplete();
-                        if (itsDone == true)
-                        {
-                            doneList.Add(recordEventChoice+1);
-                        }
-                    }
+                    Console.WriteLine("I'm sorry. That one is already completed.");
+                    break;
                 }
                 else
                 {
-                    if (doneList.Contains(recordEventChoice+1))
-                    {
-                        Console.WriteLine("That's already done.");
-                        break;
-                    }
-                    else
-                    {
-                        myGoals[recordEventChoice].RecordEvent();
-                        int pointAddOn = myGoals[recordEventChoice].GetPoints();
-                        pointsTotal += pointAddOn;
-                        doneList.Add(recordEventChoice++);
-                    }
+                    myGoals[recordEventChoice].RecordEvent();
+                    pointAddOn = myGoals[recordEventChoice].GetPoints(); //+ myGoals[recordEventChoice].GetBonus();
+                    pointsTotal += pointAddOn;
                 }
+                // string thisType = myGoals[recordEventChoice].GetGoalType();
+                // if (thisType == "Checklist")
+                // {
+                //     if (doneList.Contains(recordEventChoice+1))
+                //     {
+                //         Console.WriteLine("That's already done.");
+                //         break;
+                //     }
+                //     else
+                //     {
+                //         myGoals[recordEventChoice].RecordEvent();
+                //         int pointAddOn = myGoals[recordEventChoice].GetPoints() + myGoals[recordEventChoice].GetBonus();
+                //         pointsTotal += pointAddOn;
+                //         bool itsDone = myGoals[recordEventChoice].IsComplete();
+                //         if (itsDone == true)
+                //         {
+                //             doneList.Add(recordEventChoice+1);
+                //         }
+                //     }
+                // }
+                // else
+                // {
+                //     if (doneList.Contains(recordEventChoice+1))
+                //     {
+                //         Console.WriteLine("That's already done.");
+                //         break;
+                //     }
+                //     else
+                //     {
+                //         myGoals[recordEventChoice].RecordEvent();
+                //         int pointAddOn = myGoals[recordEventChoice].GetPoints();
+                //         pointsTotal += pointAddOn;
+                //         doneList.Add(recordEventChoice++);
+                //     }
+                // }
                 break;
             default: 
                 

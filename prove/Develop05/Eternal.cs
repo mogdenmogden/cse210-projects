@@ -34,7 +34,7 @@ public class Eternal : Goal
         else
         {
             PackageGoalStrings();
-            AwardPoints();
+            // AwardPoints();
             Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! ");
             AsciiText congratsEternal = new AsciiText($"Congratulations! You earned {_thisGoalPoints} points! ");
             congratsEternal.PrintAsciiStuff();

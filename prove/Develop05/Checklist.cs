@@ -63,7 +63,7 @@ public class Checklist : Goal
             
             if (_repetitionsDone < _repetitionsRequired)
             {
-                AwardPoints();
+                // AwardPoints();
                 PackageGoalStrings();
                 AsciiText congratsEvent = new AsciiText($"Congratulations! You earned {_thisGoalPoints} points!");
                 congratsEvent.PrintAsciiStuff();
@@ -72,7 +72,7 @@ public class Checklist : Goal
             else if (_repetitionsDone == _repetitionsRequired)
             {
                 SetComplete(true);
-                AwardPoints(); 
+                // AwardPoints(); 
                 PackageGoalStrings(); 
                 AsciiText congratsChecklist = new AsciiText($"Yes! You earned {_thisGoalPoints} and {_bonusPoints} bonus!");
                 congratsChecklist.PrintAsciiStuff();
@@ -97,16 +97,29 @@ public class Checklist : Goal
         
     }
 
-    protected override void AwardPoints() 
+    // protected override void AwardPoints() 
+    // {
+    //     if (_isDone == true)
+    //     {
+    //         _pointTotal = _pointTotal + _thisGoalPoints + _bonusPoints;
+    //     }
+    //     else
+    //     {
+    //         _pointTotal += _thisGoalPoints;
+    //     }
+    // }
+
+    public override int GetPoints()
     {
-        if (_isDone == true)
+        if (_isDone == false)
         {
-            _pointTotal = _pointTotal + _thisGoalPoints + _bonusPoints;
+            return _thisGoalPoints;
         }
-        else
+        else 
         {
-            _pointTotal += _thisGoalPoints;
+            return _thisGoalPoints + _bonusPoints;
         }
+        
     }
 
     protected override void PackageGoalStrings()

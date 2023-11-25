@@ -94,7 +94,7 @@ public class Goal
         _thisGoalPoints = points; 
     }
 
-    public int GetPoints()
+    public virtual int GetPoints()
     {
         return _thisGoalPoints;
     }
@@ -119,15 +119,15 @@ public class Goal
         return _isDone;
     }
 
-    protected virtual void AwardPoints()
-    {
-        _pointTotal += _thisGoalPoints;
-    }
+    // protected virtual void AwardPoints()
+    // {
+    //     _pointTotal += _thisGoalPoints;
+    // }
 
-    private int DisplayPointTotal()  //unused
-    {
-        return _pointTotal;
-    }
+    // private int DisplayPointTotal()  //unused
+    // {
+    //     return _pointTotal;
+    // }
 
     protected virtual void PackageGoalStrings()
     {
@@ -156,7 +156,7 @@ public class Goal
         {
             SetComplete(true);
             PackageGoalStrings();
-            AwardPoints();
+            // AwardPoints();
             Console.WriteLine($"Congratulations! You earned {_thisGoalPoints} points! ");
             AsciiText congratsSimple = new AsciiText($"Congratulations! You earned {_thisGoalPoints} points! ");
             congratsSimple.PrintAsciiStuff();
