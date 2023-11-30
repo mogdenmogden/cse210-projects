@@ -9,26 +9,18 @@ public abstract class Activity
     public Activity(string date, double duration, double distance)
     {
         _type = "general";
-        // _distance = distance; //in km
-        // _duration = duration; //in minutes
-        // _date = date;
-
-        GetSummary(date,duration,distance);
+        // GetSummary(date,duration,distance);
+        
     }
 
     public new abstract string GetType();
-    
-    // public void SetSummary()
-    // {
-        
-    // }
-    
-    protected virtual string GetSummary(string date, double duration, double distance)
+
+    public virtual void GetSummary(string date, double duration, double distance)
     {
-        Console.WriteLine($"Distanc: {GetDistance(distance)} km"); //dist
+        Console.WriteLine($"Distance: {GetDistance(distance)} km"); //dist
         Console.WriteLine($"Speed: {GetSpeed(duration, distance)} kph"); //speed
         Console.WriteLine($"Pace: {GetPace(duration, distance)} min per km"); //pace
-        return $" - {_date} {GetType()} ({_duration}) - Distance {GetDistance(distance)} km, Speed: {GetSpeed(duration,distance)} kph, Pace: {GetPace(duration,distance)} min per km";
+        Console.WriteLine($"-- {date} {GetType()} ({duration} min) - Distance {GetDistance(distance)} km, Speed: {GetSpeed(duration,distance)} kph, Pace: {GetPace(duration,distance)} min per km");
     }
 
     protected virtual double GetDistance(double distance)
