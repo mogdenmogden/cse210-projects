@@ -14,15 +14,15 @@ class Program
         Cycling bike1 = new Cycling("12/13/23",65,17);
         activities.Add(bike1);
         // Console.WriteLine("====================");
-        Swimming swim1 = new Swimming("1/15/23",50,20);
+        Swimming swim1 = new Swimming("1/15/23",50,20.5);
         activities.Add(swim1);
-        // Console.WriteLine("====================");
+        Console.WriteLine("====================");
         foreach (Activity thisOne in activities)
         {
             thisOne.GetSummary(thisOne._date,thisOne._duration,thisOne._distance);
             Console.WriteLine("====================");
         }
 
-        Console.WriteLine("\n\n");
+        Console.WriteLine("\n");
     }
 }
