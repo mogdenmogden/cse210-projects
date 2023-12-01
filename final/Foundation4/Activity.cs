@@ -17,10 +17,10 @@ public abstract class Activity
 
     public virtual void GetSummary(string date, double duration, double distance)
     {
-        Console.WriteLine($"Distance: {GetDistance(distance)} km"); //dist
-        Console.WriteLine($"Speed: {GetSpeed(duration, distance)} kph"); //speed
-        Console.WriteLine($"Pace: {GetPace(duration, distance)} min per km"); //pace
-        Console.WriteLine($"-- {date} {GetType()} ({duration} min) - Distance {GetDistance(distance)} km, Speed: {GetSpeed(duration,distance)} kph, Pace: {GetPace(duration,distance)} min per km");
+        Console.WriteLine($"Distance: {GetDistance(distance).ToString("N2")} km"); //dist
+        Console.WriteLine($"Speed: {GetSpeed(duration, distance).ToString("N2")} kph"); //speed
+        Console.WriteLine($"Pace: {GetPace(duration, distance).ToString("N2")} min per km"); //pace
+        Console.WriteLine($"-- {date} {GetType()} ({duration} min) - Distance {GetDistance(distance).ToString("N2")} km, Speed: {GetSpeed(duration,distance).ToString("N2")} kph, Pace: {GetPace(duration,distance).ToString("N2")} min per km");
     }
 
     protected virtual double GetDistance(double distance)

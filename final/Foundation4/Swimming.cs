@@ -19,9 +19,9 @@ public class Swimming : Activity
     public override void GetSummary(string date, double duration, double distance)
     {
         Console.WriteLine($"Distance: {distance} laps"); //dist
-        Console.WriteLine($"Speed: {GetSpeed(duration,distance)} kph"); //speed
-        Console.WriteLine($"Pace: {GetPace(duration,distance)/1000*50} min per lap"); //pace
-        Console.WriteLine($" - {date} {GetType()} ({duration} min) - Laps {GetDistance(distance)}, Speed {GetSpeed(duration,distance)} kph, Pace: {GetPace(duration,distance)} min per km, or {GetPace(duration,distance)/1000*50} min per lap");
+        Console.WriteLine($"Speed: {GetSpeed(duration,distance).ToString("N2")} kph"); //speed
+        Console.WriteLine($"Pace: {(GetPace(duration,distance)/1000*50).ToString("N2")} min per lap"); //pace
+        Console.WriteLine($"-- {date} {GetType()} ({duration} min) - Laps {GetDistance(distance)}, Speed {GetSpeed(duration,distance).ToString("N2")} kph, Pace: {(GetPace(duration,distance)).ToString("N2")} min per km, or {(GetPace(duration,distance)/1000*50).ToString("N2")} min per lap");
     }
 
     protected override double GetDistance(double laps)
