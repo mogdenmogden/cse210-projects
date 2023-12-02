@@ -1,6 +1,6 @@
 public class Comment
 {
-    public string _commentator, _commentText;
+    private string _commentator, _commentText;
 
     public Comment(string commentMaker, string comment)
     {

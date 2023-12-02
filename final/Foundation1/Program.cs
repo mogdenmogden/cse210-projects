@@ -6,6 +6,7 @@ class Program
     {
         // Console.WriteLine("Hello Foundation1 World!");
         List<Video> videoList =  new List<Video>();
+        
         Console.Clear();
         Video video1 = new Video("How to Eat a Mastodon", "Fred Flintstone", "180");
         Comment v1Comment1 = new Comment("jk@abc.net", "I really like your video. It's great.");

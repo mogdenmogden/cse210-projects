@@ -1,14 +1,10 @@
 public class Swimming : Activity
 {
-    public new string _type;
-
     public Swimming(string date, double duration, double distance) : base(date, duration, distance)
     {
-        _type = "Swimming";
         _date = date;
         _duration = duration;
         _distance = distance; //aka laps here
-        // GetSummary(date,duration,distance);
     }
 
     public override string GetType()
@@ -16,12 +12,9 @@ public class Swimming : Activity
         return "Swimming";
     }
     
-    public override void GetSummary(string date, double duration, double distance)
+    public override void GetSummary()
     {
-        Console.WriteLine($"-- {date} {GetType()} ({duration} min) - Laps {distance}, Speed {GetSpeed(duration,distance).ToString("N2")} kph, Pace: {(GetPace(duration,distance)).ToString("N2")} min per km, or {(GetPace(duration,distance)/1000*50).ToString("N2")} min per lap");
-        // Console.WriteLine($"Distance: {distance} laps"); //dist
-        // Console.WriteLine($"Speed: {GetSpeed(duration,distance).ToString("N2")} kph"); //speed
-        // Console.WriteLine($"Pace: {(GetPace(duration,distance)/1000*50).ToString("N2")} min per lap"); //pace
+        Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Laps {_distance}, Speed {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {(GetPace(_duration,_distance)).ToString("N2")} min per km, or {(GetPace(_duration,_distance)/1000*50).ToString("N2")} min per lap");
     }
 
     protected override double GetDistance(double laps)

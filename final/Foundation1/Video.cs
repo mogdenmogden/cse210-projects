@@ -1,7 +1,7 @@
 public class Video
 {
-    public string _title, _author, _duration;
-    public List<Comment> _comments = new List<Comment>();
+    private string _title, _author, _duration;
+    private List<Comment> _comments = new List<Comment>();
 
     public Video(string title, string author, string time)
     {
@@ -16,7 +16,7 @@ public class Video
         Console.WriteLine($"\nVideo Title: {_title}");
         Console.WriteLine($"Author: {_author}");
         Console.WriteLine($"Length(s): {_duration}");
-        Console.WriteLine($"Number of Comments: {_comments.Count}");
+        Console.WriteLine($"Number of Comments: {GetCommentQty()}");
         foreach (Comment i in _comments)
         {
             i.DisplayCommentLineDetail();
@@ -27,6 +27,11 @@ public class Video
     public void AddComment(Comment comment)
     {
         _comments.Add(comment);
+    }
+
+    private int GetCommentQty()
+    {
+        return _comments.Count();
     }
 
 }

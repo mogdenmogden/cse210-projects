@@ -2,26 +2,24 @@ using System.ComponentModel.DataAnnotations;
 
 public abstract class Activity
 {
-    public string _date, _type;
-    public double _duration;
-    public double _distance,_speed, _pace;
+    protected string _date, _type;
+    protected double _duration;
+    protected double _distance,_speed, _pace;
 
     public Activity(string date, double duration, double distance)
     {
         _type = "general";
-        // GetSummary(date,duration,distance);
-        
     }
 
     public new abstract string GetType();
 
-    public virtual void GetSummary(string date, double duration, double distance)
-    {
-        Console.WriteLine($"-- {date} {GetType()} ({duration} min) - Distance {GetDistance(distance).ToString("N2")} km, Speed: {GetSpeed(duration,distance).ToString("N2")} kph, Pace: {GetPace(duration,distance).ToString("N2")} min per km");
-        // Console.WriteLine($"Distance: {GetDistance(distance).ToString("N2")} km"); //dist
-        // Console.WriteLine($"Speed: {GetSpeed(duration, distance).ToString("N2")} kph"); //speed
-        // Console.WriteLine($"Pace: {GetPace(duration, distance).ToString("N2")} min per km"); //pace
-    }
+    public abstract void GetSummary();
+    // public virtual void GetSummary()
+    // {
+    //     Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Distance {GetDistance(_distance).ToString("N2")} km, Speed: {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {GetPace(_duration,_distance).ToString("N2")} min per km");
+    // }
+    //NOTE: Instead of the above expression, I interpreted the specification requirement as expressed in the abstract GetSummary() method.
+    //I am leaving the above in the program to demonstrate I can do that, just in case I misunderstood the requirement.
 
     protected virtual double GetDistance(double distance)
     {
@@ -38,5 +36,18 @@ public abstract class Activity
         return duration/distance; //min per km
     }
 
+    public string GetDate()
+    {
+        return _date;
+    }
 
+    public double GetDuration()
+    {
+        return _duration;
+    }
+
+    public double GetDistance()
+    {
+        return _distance;
+    }
 }

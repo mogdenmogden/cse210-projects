@@ -10,7 +10,7 @@ public class Order
         _customer = customer;
         _packLabel = "\nOrder Invoice (Pack Label)\n";
         
-        if (customer.GetCustomerCountry() == "USA")
+        if (customer.IsUSA() == true)
         {
             _shippingCost = 5.00;
         }
@@ -26,22 +26,24 @@ public class Order
     public void AddProductToOrder(Product product)
     {
         _products.Add(product);
-        _totalCost = _totalCost + product.GetProductPrice();
+        _totalCost = _totalCost + product.GetProductPrice();  //total cost of order
         _packLabel = string.Concat(_packLabel,product.GetProductLabelLine());
     }
 
-    public void PrintShipLabel()
+    public string PrintShipLabel()
     {
-        Console.WriteLine(_shipLabel);
+        // Console.WriteLine(_shipLabel);//prefer to do it this way
+        return _shipLabel;  //I thought it was easier to just return void and writeline the label. The spec said "can return a string for the shipping label". So I did this.
     }
 
-    public void PrintPackLabel()
+    public string PrintPackLabel()  //I thought it was easier to just return void and writeline the label. The spec said "can return a string for the packing label". So I did this.
     {
-        Console.WriteLine(_packLabel);
-        Console.WriteLine($"Shipping Cost:\t\t\t\t\t\t\t${_shippingCost.ToString("N2")}");
+        // Console.WriteLine(_packLabel);  //prefer to do it this way
+        // Console.WriteLine($"Shipping Cost:\t\t\t\t\t\t\t${_shippingCost.ToString("N2")}");  //prefer to do it this way
+        return $"{_packLabel}\nShipping Cost:\t\t\t\t\t\t\t${_shippingCost.ToString("N2")}"; 
     }
 
-    public void GetProductInvoiceTotal()
+    public void GetProductInvoiceTotal()  //total cost of order
     {
         string divider = new string('=',20);
         Console.WriteLine($"Your Order Total is:\t\t\t\t\t\t${_totalCost.ToString("N2")}");

@@ -14,7 +14,19 @@ public class Customer
         return _address.GetCountry();
     }
 
-    public string GetAddress()
+    public bool IsUSA()  //this may be redundant, but the assignment spec stated: "The customer should have a method that can return whether they live in the USA or not."
+    {
+        if (GetCustomerCountry() == "USA")
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private string GetAddress()
     {
         return _address.GetFullAddress();
     }

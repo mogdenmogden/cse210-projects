@@ -17,7 +17,7 @@ public class Event
 
     }
 
-    protected void SetStandardMsg()
+    private void SetStandardMsg()
     {
         _StandardMsg = $"Event: {_title} - {_description} \nHeld on {_date} at {_time}. \nLocation: {_address}";
     }

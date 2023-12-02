@@ -5,7 +5,7 @@ public class Reception : Event
     public Reception(string title, string desc, string date, string time, string email, Address address) : base(title, desc, date, time, address)
     {
         _email = email;
-        _type = "Reception";
+        _type = "RECEPTION";
         _address = address.GetFullAddress();
         SetFullMsg();
         SetShortMsg();
@@ -13,7 +13,7 @@ public class Reception : Event
 
     private void SetFullMsg()
     {
-        _FullMsg = $"Your {_type} Event: {_title} - {_description} \nHeld on {_date} at {_time}. \nLocation: {_address}\nRSVP is required via: {_email} ";
+        _FullMsg = $"{_type}: {_title} - {_description} \nHeld on {_date} at {_time}. \nLocation: {_address}\nRSVP is required via: {_email} ";
     }
 
     public string GetFullMsg()
@@ -21,11 +21,12 @@ public class Reception : Event
         return _FullMsg;
     }
 
-    protected void SetShortMsg()
+    private void SetShortMsg()
     {
-        _ShortMsg = $"Your {_type} Event: {_title} on {_date}";
+        _ShortMsg = $"{_type}: {_title} on {_date}";
     }
-     public string GetShortMsg()
+    
+    public string GetShortMsg()
     {
         return _ShortMsg;
     }
