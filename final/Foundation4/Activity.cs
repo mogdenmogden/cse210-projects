@@ -13,13 +13,13 @@ public abstract class Activity
 
     public new abstract string GetType();
 
-    public abstract void GetSummary();
-    // public virtual void GetSummary()
-    // {
-    //     Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Distance {GetDistance(_distance).ToString("N2")} km, Speed: {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {GetPace(_duration,_distance).ToString("N2")} min per km");
-    // }
-    //NOTE: Instead of the above expression, I interpreted the specification requirement as expressed in the abstract GetSummary() method.
-    //I am leaving the above in the program to demonstrate I can do that, just in case I misunderstood the requirement.
+    public virtual void GetSummary()
+    {
+        Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Distance {GetDistance(_distance).ToString("N2")} km, Speed: {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {GetPace(_duration,_distance).ToString("N2")} min per km");
+    }
+    // public abstract void GetSummary();
+    //NOTE: Instead of the abstract expression, I interpreted the specification requirement as expressed in the virtual GetSummary() method.
+    //I am leaving the abstract in place to demonstrate I can do that, just in case I misunderstood the requirement.
 
     protected virtual double GetDistance(double distance)
     {

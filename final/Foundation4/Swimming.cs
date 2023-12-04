@@ -14,7 +14,7 @@ public class Swimming : Activity
     
     public override void GetSummary()
     {
-        Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Laps {_distance}, Speed {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {(GetPace(_duration,_distance)).ToString("N2")} min per km, or {(GetPace(_duration,_distance)/1000*50).ToString("N2")} min per lap");
+        Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Laps {_distance} (or {GetDistance(_distance)} km), Speed {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {(GetPace(_duration,_distance)).ToString("N2")} min per km, or {(GetPace(_duration,_distance)/1000*50).ToString("N2")} min per lap");
     }
 
     protected override double GetDistance(double laps)
