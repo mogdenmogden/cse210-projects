@@ -2,21 +2,22 @@ using System.ComponentModel.DataAnnotations;
 
 public abstract class Activity
 {
-    protected string _date;
-    protected double _duration;
-    protected double _distance,_speed, _pace;
+    // protected string _date;
+    // protected double _duration;
+    protected double _distance;
 
-    public Activity(string date, double duration, double distance)
-    {
-       _date = date;
-        _duration = duration;
-        _distance = distance;
-    }
+    // public Activity(string date, double duration, double distance)
+    // {
+    //    _date = date;
+    //     _duration = duration;
+    //     _distance = distance;
+    // }
 
-    public virtual void GetSummary()
-    {
-        Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Distance {_distance.ToString("N2")} km, Speed: {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {GetPace(_duration,_distance).ToString("N2")} min per km");
-    }
+    public abstract void GetSummary();
+    // public virtual void GetSummary()
+    // {
+    //     Console.WriteLine($"-- {_date} {GetType()} ({_duration} min) - Distance {_distance.ToString("N2")} km, Speed: {GetSpeed(_duration,_distance).ToString("N2")} kph, Pace: {GetPace(_duration,_distance).ToString("N2")} min per km");
+    // }
 
 
     protected virtual double GetSpeed(double duration,double distance)
@@ -29,17 +30,16 @@ public abstract class Activity
         return duration/distance; //min per km
     }
 
-    public string GetDate()
-    {
-        return _date;
-    }
+    public abstract string GetDate();
+    // {
+    // }
 
-    public double GetDuration()
-    {
-        return _duration;
-    }
+    public abstract double GetDuration();
+    // {
+    //     return _duration;
+    // }
 
-    public double GetDistance()
+    public virtual double GetDistance()
     {
         return _distance;
     }
