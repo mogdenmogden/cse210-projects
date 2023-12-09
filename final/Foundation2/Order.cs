@@ -19,7 +19,7 @@ public class Order
             _shippingCost =  35.00;
         }    
         _totalCost = _shippingCost;
-        _shipLabel = customer.GetShipLabel();
+        _shipLabel = customer.GetShipInfo();
         
     }
 

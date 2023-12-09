@@ -1,7 +1,7 @@
 public class Event
 {
     protected string _title, _description, _date, _time, _type, _address;
-    protected string _StandardMsg, _ShortMsg;
+    protected string _StandardMsg, _ShortMsg, _FullMsg;
     
     public Event(string title, string desc, string date, string time, Address address)
     {
@@ -9,12 +9,9 @@ public class Event
         _description = desc;
         _date = date;
         _time = time;
-        //_type = "Generic";
-
         _address = address.GetFullAddress();
-
         SetStandardMsg();
-
+        SetShortMsg();
     }
 
     private void SetStandardMsg()
@@ -27,5 +24,18 @@ public class Event
         return _StandardMsg;
     }
 
+    private void SetShortMsg()
+    {
+        _ShortMsg = $"{GetType()} Event: {_title} on {_date}";
+    }
+    
+     public string GetShortMsg()
+    {
+        return _ShortMsg;
+    }
 
+    public string GetFullMsg()
+    {
+        return _FullMsg;
+    }
 }

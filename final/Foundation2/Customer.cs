@@ -31,7 +31,7 @@ public class Customer
         return _address.GetFullAddress();
     }
 
-    public string GetShipLabel()
+    public string GetShipInfo()
     {
         return _name+"\n"+GetAddress();
     }
